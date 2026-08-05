@@ -9,6 +9,12 @@ describe("settingsReducer", () => {
     expect(next.spacing).toEqual(INITIAL_SETTINGS.spacing);
   });
 
+  it("SET_NODE_LIMIT updates only nodeLimit", () => {
+    const next = settingsReducer(INITIAL_SETTINGS, { type: "SET_NODE_LIMIT", limit: 10 });
+    expect(next.nodeLimit).toBe(10);
+    expect(next.layoutEngineId).toBe(INITIAL_SETTINGS.layoutEngineId);
+  });
+
   it("SET_SPACING updates only the targeted spacing key", () => {
     const next = settingsReducer(INITIAL_SETTINGS, { type: "SET_SPACING", key: "layer", value: 999 });
     expect(next.spacing.layer).toBe(999);

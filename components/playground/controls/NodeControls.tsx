@@ -1,5 +1,6 @@
 "use client";
 
+import { KNOWLEDGE_NODES } from "@/lib/graph/data";
 import { NodeDensity, PlaygroundSettings, SettingsAction } from "@/lib/playground/settingsReducer";
 import { ControlGroup, SelectField, SliderField } from "./primitives";
 
@@ -7,6 +8,13 @@ const DENSITY_OPTIONS: { value: NodeDensity; label: string }[] = [
   { value: "compact", label: "Compact" },
   { value: "expanded", label: "Expanded" },
 ];
+
+const TOTAL_NODE_COUNT = KNOWLEDGE_NODES.length;
+const NODE_LIMIT_VALUES = Array.from(new Set([5, 10, 25, TOTAL_NODE_COUNT])).filter((n) => n <= TOTAL_NODE_COUNT);
+const NODE_LIMIT_OPTIONS = NODE_LIMIT_VALUES.map((n) => ({
+  value: String(n),
+  label: n >= TOTAL_NODE_COUNT ? `All (${TOTAL_NODE_COUNT})` : `${n} nodes`,
+}));
 
 export function NodeControls({
   settings,
@@ -17,6 +25,12 @@ export function NodeControls({
 }) {
   return (
     <ControlGroup title="Nodes">
+      <SelectField
+        label="Node limit"
+        value={String(Math.min(settings.nodeLimit, TOTAL_NODE_COUNT))}
+        options={NODE_LIMIT_OPTIONS}
+        onChange={(value) => dispatch({ type: "SET_NODE_LIMIT", limit: Number(value) })}
+      />
       <SelectField
         label="Density"
         value={settings.nodeDensity}

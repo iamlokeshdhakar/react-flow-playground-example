@@ -17,12 +17,12 @@ const sizes = Object.fromEntries(nodes.map((n) => [n.id, { width: 200, height: 8
 const options = { direction: "DOWN" as const, spacing: { node: 40, layer: 60, edge: 20, component: 60 } };
 
 describe("layout engine registry", () => {
-  it("registers elk-layered, elk-force, and elk-radial", () => {
-    expect(Object.keys(LAYOUT_ENGINES).sort()).toEqual(["elk-force", "elk-layered", "elk-radial"]);
+  it("registers elk-layered, elk-force, elk-radial, and circular", () => {
+    expect(Object.keys(LAYOUT_ENGINES).sort()).toEqual(["circular", "elk-force", "elk-layered", "elk-radial"]);
     expect(LAYOUT_ENGINES[DEFAULT_LAYOUT_ENGINE_ID]).toBeDefined();
   });
 
-  it.each(["elk-layered", "elk-force", "elk-radial"])(
+  it.each(["elk-layered", "elk-force", "elk-radial", "circular"])(
     "%s positions every node with a finite x/y",
     async (id) => {
       const result = await LAYOUT_ENGINES[id].computeLayout(nodes, edges, sizes, options);

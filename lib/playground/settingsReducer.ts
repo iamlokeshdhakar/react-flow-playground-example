@@ -17,6 +17,7 @@ export type NodeDensity = "compact" | "expanded";
 
 export interface PlaygroundSettings {
   layoutEngineId: string;
+  nodeLimit: number;
   direction: "DOWN" | "UP" | "RIGHT" | "LEFT";
   spacing: { node: number; layer: number; edge: number; component: number };
   handleStrategy: HandleStrategy;
@@ -49,11 +50,12 @@ export interface PlaygroundSettings {
 
 export const INITIAL_SETTINGS: PlaygroundSettings = {
   layoutEngineId: "elk-layered",
+  nodeLimit: 10,
   direction: "DOWN",
   spacing: { node: 50, layer: 80, edge: 20, component: 80 },
   handleStrategy: "auto-after-layout",
-  edgeRouting: "smoothstep",
-  edgeLabelMode: "hover",
+  edgeRouting: "bezier",
+  edgeLabelMode: "always",
   nodeDensity: "expanded",
   nodePadding: 12,
   fontSize: 13,
@@ -81,6 +83,7 @@ export const INITIAL_SETTINGS: PlaygroundSettings = {
 
 export type SettingsAction =
   | { type: "SET_LAYOUT_ENGINE"; id: string }
+  | { type: "SET_NODE_LIMIT"; limit: number }
   | { type: "SET_DIRECTION"; direction: PlaygroundSettings["direction"] }
   | { type: "SET_SPACING"; key: keyof PlaygroundSettings["spacing"]; value: number }
   | { type: "SET_HANDLE_STRATEGY"; strategy: HandleStrategy }
@@ -97,6 +100,8 @@ export function settingsReducer(state: PlaygroundSettings, action: SettingsActio
   switch (action.type) {
     case "SET_LAYOUT_ENGINE":
       return { ...state, layoutEngineId: action.id };
+    case "SET_NODE_LIMIT":
+      return { ...state, nodeLimit: action.limit };
     case "SET_DIRECTION":
       return { ...state, direction: action.direction };
     case "SET_SPACING":

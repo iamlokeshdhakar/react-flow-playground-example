@@ -21,6 +21,7 @@ export function ControlPanel({
       <div className="border-b border-zinc-800 px-4 py-3">
         <h2 className="text-sm font-semibold text-zinc-100">Layout Playground</h2>
         <button
+          type="button"
           className="mt-2 w-full rounded border border-zinc-700 px-2 py-1 text-xs text-zinc-300 hover:bg-zinc-800"
           onClick={() => dispatch({ type: "RESET" })}
         >

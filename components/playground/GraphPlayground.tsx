@@ -15,12 +15,14 @@ import {
   NodeMouseHandler,
 } from "@xyflow/react";
 import { KNOWLEDGE_NODES, KNOWLEDGE_EDGES } from "@/lib/graph/data";
-import { EDGE_TYPE_META } from "@/lib/graph/types";
+import { EDGE_TYPE_META, KnowledgeEdge, KnowledgeNode } from "@/lib/graph/types";
+import { selectTopNodesByDegree } from "@/lib/graph/subset";
 import { LAYOUT_ENGINES, DEFAULT_LAYOUT_ENGINE_ID } from "@/lib/layout/registry";
 import { DEFAULT_NODE_SIZE, PositionedNode, RoutedPoint, Size } from "@/lib/layout/types";
 import {
   settingsReducer,
   INITIAL_SETTINGS,
+  PlaygroundSettings,
   SettingsAction,
 } from "@/lib/playground/settingsReducer";
 import {
@@ -41,10 +43,10 @@ import { ControlPanel } from "./ControlPanel";
 const NODE_TYPES = { scientific: ScientificNode };
 const EDGE_TYPES = { labeled: LabeledEdge };
 
-function buildInitialNodes(): ScientificNodeType[] {
-  const activeSides = sidesForStrategy(INITIAL_SETTINGS.handleStrategy);
-  const role = rolesForStrategy(INITIAL_SETTINGS.handleStrategy);
-  return KNOWLEDGE_NODES.map((kn) => ({
+function buildNodesFor(activeNodes: KnowledgeNode[], settings: PlaygroundSettings): ScientificNodeType[] {
+  const activeSides = sidesForStrategy(settings.handleStrategy);
+  const role = rolesForStrategy(settings.handleStrategy);
+  return activeNodes.map((kn) => ({
     id: kn.id,
     type: "scientific",
     position: { x: 0, y: 0 },
@@ -52,31 +54,31 @@ function buildInitialNodes(): ScientificNodeType[] {
       knowledgeNode: kn,
       activeSides,
       role,
-      density: INITIAL_SETTINGS.nodeDensity,
-      padding: INITIAL_SETTINGS.nodePadding,
-      fontSize: INITIAL_SETTINGS.fontSize,
-      showNodeId: INITIAL_SETTINGS.debug.showNodeIds,
-      showDimensions: INITIAL_SETTINGS.debug.showDimensions,
+      density: settings.nodeDensity,
+      padding: settings.nodePadding,
+      fontSize: settings.fontSize,
+      showNodeId: settings.debug.showNodeIds,
+      showDimensions: settings.debug.showDimensions,
       dimmed: false,
       highlighted: false,
     },
   }));
 }
 
-function buildInitialEdges(): LabeledEdgeType[] {
-  return KNOWLEDGE_EDGES.map((e) => ({
+function buildEdgesFor(activeEdges: KnowledgeEdge[], settings: PlaygroundSettings): LabeledEdgeType[] {
+  return activeEdges.map((e) => ({
     id: e.id,
     source: e.source,
     target: e.target,
     type: "labeled",
     data: {
-      routing: INITIAL_SETTINGS.edgeRouting,
-      labelMode: INITIAL_SETTINGS.edgeLabelMode,
+      routing: settings.edgeRouting,
+      labelMode: settings.edgeLabelMode,
       label: EDGE_TYPE_META[e.type].label,
       points: undefined,
       dimmed: false,
       crossing: false,
-      showEdgeId: INITIAL_SETTINGS.debug.showEdgeIds,
+      showEdgeId: settings.debug.showEdgeIds,
     },
   }));
 }
@@ -87,8 +89,18 @@ function centerOf(pos: { x: number; y: number; width: number; height: number }) 
 
 function GraphPlaygroundInner() {
   const [settings, dispatch] = useReducer(settingsReducer, INITIAL_SETTINGS);
-  const [nodes, setNodes, onNodesChange] = useNodesState<ScientificNodeType>(buildInitialNodes());
-  const [edges, setEdges, onEdgesChange] = useEdgesState<LabeledEdgeType>(buildInitialEdges());
+
+  const activeGraph = useMemo(
+    () => selectTopNodesByDegree(KNOWLEDGE_NODES, KNOWLEDGE_EDGES, settings.nodeLimit),
+    [settings.nodeLimit]
+  );
+
+  const [nodes, setNodes, onNodesChange] = useNodesState<ScientificNodeType>(
+    buildNodesFor(activeGraph.nodes, settings)
+  );
+  const [edges, setEdges, onEdgesChange] = useEdgesState<LabeledEdgeType>(
+    buildEdgesFor(activeGraph.edges, settings)
+  );
   const [selectedNodeId, setSelectedNodeId] = useState<string | null>(null);
   const [layoutMs, setLayoutMs] = useState<number | null>(null);
   const [crossingCount, setCrossingCount] = useState(0);
@@ -111,7 +123,7 @@ function GraphPlaygroundInner() {
       const connectedIds = new Set<string>();
       if (selectedNodeId) {
         connectedIds.add(selectedNodeId);
-        for (const e of KNOWLEDGE_EDGES) {
+        for (const e of activeGraph.edges) {
           if (e.source === selectedNodeId) connectedIds.add(e.target);
           if (e.target === selectedNodeId) connectedIds.add(e.source);
         }
@@ -150,7 +162,7 @@ function GraphPlaygroundInner() {
       const segments: Segment[] = [];
       const handleAssignments = new Map<string, HandleAssignment>();
 
-      for (const e of KNOWLEDGE_EDGES) {
+      for (const e of activeGraph.edges) {
         const s = getPos(e.source);
         const t = getPos(e.target);
         if (!s || !t) continue;
@@ -179,7 +191,7 @@ function GraphPlaygroundInner() {
       setCrossingCount(count);
 
       setEdges(
-        KNOWLEDGE_EDGES.map((e) => {
+        activeGraph.edges.map((e) => {
           const assignment = handleAssignments.get(e.id);
           const points = settings.edgeRouting === "elk-routed" ? elkPointsRef.current.get(e.id) : undefined;
           const bothConnected = connectedIds.has(e.source) && connectedIds.has(e.target);
@@ -204,11 +216,14 @@ function GraphPlaygroundInner() {
         })
       );
     },
-    [settings, selectedNodeId, getNodes, setNodes, setEdges]
+    [settings, selectedNodeId, activeGraph, getNodes, setNodes, setEdges]
   );
 
   const runLayout = useCallback(async () => {
     const currentNodes = getNodes();
+    // The active node set may have just changed (nodeLimit); wait for the reset effect's fresh
+    // nodes to mount and get re-measured before laying out, instead of laying out a stale set.
+    if (currentNodes.length !== activeGraph.nodes.length) return;
     const sizes: Record<string, Size> = {};
     for (const n of currentNodes) {
       sizes[n.id] = {
@@ -219,7 +234,7 @@ function GraphPlaygroundInner() {
 
     const engine = LAYOUT_ENGINES[settings.layoutEngineId] ?? LAYOUT_ENGINES[DEFAULT_LAYOUT_ENGINE_ID];
     const start = performance.now();
-    const result = await engine.computeLayout(KNOWLEDGE_NODES, KNOWLEDGE_EDGES, sizes, {
+    const result = await engine.computeLayout(activeGraph.nodes, activeGraph.edges, sizes, {
       direction: settings.direction,
       spacing: settings.spacing,
     });
@@ -237,7 +252,7 @@ function GraphPlaygroundInner() {
 
     if (settings.handleStrategy === "auto-after-layout") {
       const frozen: Record<string, HandleAssignment> = {};
-      for (const e of KNOWLEDGE_EDGES) {
+      for (const e of activeGraph.edges) {
         const s = positionById.get(e.source);
         const t = positionById.get(e.target);
         if (s && t) frozen[e.id] = pickHandleSides(centerOf(s), centerOf(t));
@@ -250,12 +265,13 @@ function GraphPlaygroundInner() {
     if (settings.view.fitView) {
       requestAnimationFrame(() => fitView({ duration: settings.view.animateLayout ? 400 : 0 }));
     }
-  }, [settings, getNodes, setNodes, fitView, recompute]);
+  }, [settings, activeGraph, getNodes, setNodes, fitView, recompute]);
 
   const layoutKey = useMemo(
     () =>
       JSON.stringify({
         engine: settings.layoutEngineId,
+        nodeLimit: settings.nodeLimit,
         direction: settings.direction,
         spacing: settings.spacing,
         density: settings.nodeDensity,
@@ -265,6 +281,17 @@ function GraphPlaygroundInner() {
       }),
     [settings]
   );
+
+  // The active node/edge subset changed (nodeLimit): fully replace the graph rather than patching
+  // it in place, since the *set* of node ids is different, not just their appearance/position.
+  useEffect(() => {
+    setSelectedNodeId(null);
+    frozenHandlesRef.current = {};
+    elkPointsRef.current = new Map();
+    setNodes(buildNodesFor(activeGraph.nodes, settings));
+    setEdges(buildEdgesFor(activeGraph.edges, settings));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeGraph]);
 
   // Layout-affecting settings changed: update node data (may change measured size), then re-layout.
   useEffect(() => {
