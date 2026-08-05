@@ -15,8 +15,9 @@ import {
   NodeMouseHandler,
 } from "@xyflow/react";
 import { KNOWLEDGE_NODES, KNOWLEDGE_EDGES } from "@/lib/graph/data";
-import { EDGE_TYPE_META, KnowledgeEdge, KnowledgeNode } from "@/lib/graph/types";
+import { getEdgeTypeLabel, KnowledgeEdge, KnowledgeNode } from "@/lib/graph/types";
 import { selectTopNodesByDegree } from "@/lib/graph/subset";
+import { CustomGraphData, parseCustomGraphJson } from "@/lib/graph/customData";
 import { LAYOUT_ENGINES, DEFAULT_LAYOUT_ENGINE_ID } from "@/lib/layout/registry";
 import { DEFAULT_NODE_SIZE, PositionedNode, RoutedPoint, Size } from "@/lib/layout/types";
 import {
@@ -74,7 +75,7 @@ function buildEdgesFor(activeEdges: KnowledgeEdge[], settings: PlaygroundSetting
     data: {
       routing: settings.edgeRouting,
       labelMode: settings.edgeLabelMode,
-      label: EDGE_TYPE_META[e.type].label,
+      label: getEdgeTypeLabel(e.type),
       points: undefined,
       dimmed: false,
       crossing: false,
@@ -89,10 +90,28 @@ function centerOf(pos: { x: number; y: number; width: number; height: number }) 
 
 function GraphPlaygroundInner() {
   const [settings, dispatch] = useReducer(settingsReducer, INITIAL_SETTINGS);
+  const [customGraph, setCustomGraph] = useState<CustomGraphData | null>(null);
+
+  const baseNodes = customGraph?.nodes ?? KNOWLEDGE_NODES;
+  const baseEdges = customGraph?.edges ?? KNOWLEDGE_EDGES;
 
   const activeGraph = useMemo(
-    () => selectTopNodesByDegree(KNOWLEDGE_NODES, KNOWLEDGE_EDGES, settings.nodeLimit),
-    [settings.nodeLimit]
+    () => selectTopNodesByDegree(baseNodes, baseEdges, settings.nodeLimit),
+    [baseNodes, baseEdges, settings.nodeLimit]
+  );
+
+  const loadCustomData = useCallback((raw: string): string | null => {
+    const result = parseCustomGraphJson(raw);
+    if (result.error) return result.error;
+    setCustomGraph(result.data);
+    return null;
+  }, []);
+
+  const resetToSampleData = useCallback(() => setCustomGraph(null), []);
+
+  const sampleDataText = useMemo(
+    () => JSON.stringify({ nodes: KNOWLEDGE_NODES, edges: KNOWLEDGE_EDGES }, null, 2),
+    []
   );
 
   const [nodes, setNodes, onNodesChange] = useNodesState<ScientificNodeType>(
@@ -206,7 +225,7 @@ function GraphPlaygroundInner() {
             data: {
               routing: settings.edgeRouting,
               labelMode: settings.edgeLabelMode,
-              label: EDGE_TYPE_META[e.type].label,
+              label: getEdgeTypeLabel(e.type),
               points,
               dimmed,
               crossing: settings.debug.highlightCrossings && crossingEdgeIds.has(e.id),
@@ -369,7 +388,17 @@ function GraphPlaygroundInner() {
           </div>
         )}
       </div>
-      <ControlPanel settings={settings} dispatch={dispatchTyped} />
+      <ControlPanel
+        settings={settings}
+        dispatch={dispatchTyped}
+        totalNodeCount={baseNodes.length}
+        onLoadCustomData={loadCustomData}
+        onResetToSampleData={resetToSampleData}
+        isCustomData={customGraph !== null}
+        customNodeCount={baseNodes.length}
+        customEdgeCount={baseEdges.length}
+        defaultDataText={sampleDataText}
+      />
     </div>
   );
 }

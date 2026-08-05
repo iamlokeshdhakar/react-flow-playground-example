@@ -2,7 +2,7 @@
 
 import { Fragment, memo, useEffect, useRef, useState } from "react";
 import { Handle, Position, NodeProps, Node } from "@xyflow/react";
-import { KnowledgeNode, NODE_TYPE_META } from "@/lib/graph/types";
+import { KnowledgeNode, getNodeTypeMeta } from "@/lib/graph/types";
 import { Side } from "@/lib/graph/handles";
 
 export interface ScientificNodeData extends Record<string, unknown> {
@@ -51,7 +51,7 @@ function ScientificNodeImpl({ data }: NodeProps<ScientificNodeType>) {
     dimmed,
     highlighted,
   } = data;
-  const meta = NODE_TYPE_META[knowledgeNode.type];
+  const meta = getNodeTypeMeta(knowledgeNode.type);
   const cardRef = useRef<HTMLDivElement>(null);
   const [measured, setMeasured] = useState({ width: 0, height: 0 });
 

@@ -8,13 +8,28 @@ import { EdgeControls } from "./controls/EdgeControls";
 import { NodeControls } from "./controls/NodeControls";
 import { ViewControls } from "./controls/ViewControls";
 import { DebugControls } from "./controls/DebugControls";
+import { DataControls } from "./controls/DataControls";
 
 export function ControlPanel({
   settings,
   dispatch,
+  totalNodeCount,
+  onLoadCustomData,
+  onResetToSampleData,
+  isCustomData,
+  customNodeCount,
+  customEdgeCount,
+  defaultDataText,
 }: {
   settings: PlaygroundSettings;
   dispatch: (a: SettingsAction) => void;
+  totalNodeCount: number;
+  onLoadCustomData: (raw: string) => string | null;
+  onResetToSampleData: () => void;
+  isCustomData: boolean;
+  customNodeCount: number;
+  customEdgeCount: number;
+  defaultDataText: string;
 }) {
   return (
     <aside className="flex h-full w-80 shrink-0 flex-col overflow-y-auto border-l border-zinc-800 bg-zinc-950">
@@ -28,11 +43,19 @@ export function ControlPanel({
           Reset to defaults
         </button>
       </div>
+      <DataControls
+        onLoad={onLoadCustomData}
+        onReset={onResetToSampleData}
+        isCustom={isCustomData}
+        nodeCount={customNodeCount}
+        edgeCount={customEdgeCount}
+        defaultDataText={defaultDataText}
+      />
       <LayoutControls settings={settings} dispatch={dispatch} />
       <SpacingControls settings={settings} dispatch={dispatch} />
       <HandleControls settings={settings} dispatch={dispatch} />
       <EdgeControls settings={settings} dispatch={dispatch} />
-      <NodeControls settings={settings} dispatch={dispatch} />
+      <NodeControls settings={settings} dispatch={dispatch} totalNodeCount={totalNodeCount} />
       <ViewControls settings={settings} dispatch={dispatch} />
       <DebugControls settings={settings} dispatch={dispatch} />
     </aside>

@@ -22,7 +22,8 @@ export type EdgeType =
 
 export interface KnowledgeNode {
   id: string;
-  type: NodeType;
+  /** One of NodeType for the built-in dataset, but user-supplied custom data may use any string. */
+  type: string;
   label: string;
   description: string;
 }
@@ -31,7 +32,8 @@ export interface KnowledgeEdge {
   id: string;
   source: string;
   target: string;
-  type: EdgeType;
+  /** One of EdgeType for the built-in dataset, but user-supplied custom data may use any string. */
+  type: string;
   label?: string;
 }
 
@@ -67,3 +69,36 @@ export const EDGE_TYPE_META: Record<EdgeType, { label: string }> = {
   contradicts: { label: "contradicts" },
   associatedWith: { label: "associated with" },
 };
+
+const FALLBACK_NODE_COLORS = ["#64748b", "#84cc16", "#0ea5e9", "#d946ef", "#fb923c", "#4ade80", "#f472b6", "#38bdf8"];
+
+function hashString(value: string): number {
+  let hash = 0;
+  for (let i = 0; i < value.length; i++) hash = (hash * 31 + (value.codePointAt(i) ?? 0)) >>> 0;
+  return hash;
+}
+
+function isKnownNodeType(type: string): type is NodeType {
+  return type in NODE_TYPE_META;
+}
+
+function isKnownEdgeType(type: string): type is EdgeType {
+  return type in EDGE_TYPE_META;
+}
+
+/** Looks up metadata for a node type, generating a stable fallback for types outside the built-in set. */
+export function getNodeTypeMeta(type: string): NodeTypeMeta {
+  if (isKnownNodeType(type)) return NODE_TYPE_META[type];
+  return {
+    label: type,
+    color: FALLBACK_NODE_COLORS[hashString(type) % FALLBACK_NODE_COLORS.length],
+    icon: "\u{25CF}",
+    category: type,
+  };
+}
+
+/** Looks up the display label for an edge type, falling back to the raw type string if unrecognized. */
+export function getEdgeTypeLabel(type: string): string {
+  if (isKnownEdgeType(type)) return EDGE_TYPE_META[type].label;
+  return type;
+}
