@@ -13,11 +13,13 @@ import {
 } from "@xyflow/react";
 import { EdgeRoutingType, EdgeLabelMode } from "@/lib/playground/settingsReducer";
 import { RoutedPoint } from "@/lib/layout/types";
+import { EdgeOperation, OPERATION_STATUS_META, operationStatus } from "@/lib/graph/types";
 
 export interface LabeledEdgeData extends Record<string, unknown> {
   routing: EdgeRoutingType;
   labelMode: EdgeLabelMode;
   label: string;
+  operation: EdgeOperation;
   points?: RoutedPoint[];
   dimmed: boolean;
   crossing: boolean;
@@ -47,7 +49,8 @@ export function LabeledEdge({
 }: EdgeProps<LabeledEdgeType>) {
   const [hovered, setHovered] = useState(false);
   if (!data) return null;
-  const { routing, labelMode, label, points, dimmed, crossing, showEdgeId } = data;
+  const { routing, labelMode, label, operation, points, dimmed, crossing, showEdgeId } = data;
+  const statusMeta = OPERATION_STATUS_META[operationStatus(operation)];
 
   let path: string;
   let labelX: number;
@@ -85,11 +88,14 @@ export function LabeledEdge({
         markerEnd={markerEnd}
         style={{
           ...style,
-          stroke: crossing ? "#ef4444" : style?.stroke,
-          strokeWidth: crossing ? 2.5 : style?.strokeWidth,
+          stroke: crossing ? "#ef4444" : statusMeta.colorDark,
+          strokeWidth: crossing ? 2.5 : 1.5,
+          strokeDasharray: crossing ? undefined : statusMeta.dashed ? "6 4" : undefined,
           opacity: dimmed ? 0.15 : 1,
         }}
       />
+      <circle cx={sourceX} cy={sourceY} r={2.5} fill={statusMeta.colorDark} opacity={dimmed ? 0.15 : 1} />
+      <circle cx={targetX} cy={targetY} r={2.5} fill={statusMeta.colorDark} opacity={dimmed ? 0.15 : 1} />
       <path
         d={path}
         fill="none"

@@ -25,6 +25,7 @@ export function ViewControls({
       <ToggleField label="Pan on scroll" checked={view.panOnScroll} onChange={(v) => set("panOnScroll", v)} />
       <SliderField label="Min zoom" value={view.minZoom} min={0.1} max={1} step={0.1} onChange={(v) => set("minZoom", v)} />
       <SliderField label="Max zoom" value={view.maxZoom} min={1} max={4} step={0.1} onChange={(v) => set("maxZoom", v)} />
+      <ToggleField label="Dark mode (scientific view)" checked={view.darkMode} onChange={(v) => set("darkMode", v)} />
     </ControlGroup>
   );
 }

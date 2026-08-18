@@ -1,4 +1,4 @@
-import { KnowledgeEdge, KnowledgeNode } from "./types";
+import { isEdgeOperation, isNodeOperation, KnowledgeEdge, KnowledgeNode } from "./types";
 
 export interface CustomGraphData {
   nodes: KnowledgeNode[];
@@ -41,6 +41,12 @@ export function parseCustomGraphJson(raw: string): ParseResult {
     if (typeof entry?.id !== "string" || typeof entry?.type !== "string" || typeof entry?.label !== "string") {
       return { data: null, error: `Node at index ${i} must have string "id", "type", and "label" fields.` };
     }
+    if (typeof entry.operation !== "string" || !isNodeOperation(entry.operation)) {
+      return {
+        data: null,
+        error: `Node at index ${i} must have an "operation" field set to one of node.create, node.update, node.fetch, node.delete.`,
+      };
+    }
     if (nodeIds.has(entry.id)) {
       return { data: null, error: `Duplicate node id "${entry.id}".` };
     }
@@ -50,6 +56,7 @@ export function parseCustomGraphJson(raw: string): ParseResult {
       type: entry.type,
       label: entry.label,
       description: typeof entry.description === "string" ? entry.description : "",
+      operation: entry.operation,
     });
   }
 
@@ -69,6 +76,12 @@ export function parseCustomGraphJson(raw: string): ParseResult {
     ) {
       return { data: null, error: `Edge at index ${i} must have string "id", "source", "target", and "type" fields.` };
     }
+    if (typeof entry.operation !== "string" || !isEdgeOperation(entry.operation)) {
+      return {
+        data: null,
+        error: `Edge at index ${i} must have an "operation" field set to one of edge.create, edge.update, edge.fetch, edge.delete.`,
+      };
+    }
     if (edgeIds.has(entry.id)) {
       return { data: null, error: `Duplicate edge id "${entry.id}".` };
     }
@@ -85,6 +98,7 @@ export function parseCustomGraphJson(raw: string): ParseResult {
       target: entry.target,
       type: entry.type,
       label: typeof entry.label === "string" ? entry.label : undefined,
+      operation: entry.operation,
     });
   }
 

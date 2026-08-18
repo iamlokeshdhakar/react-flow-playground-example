@@ -2,7 +2,7 @@
 
 import { Fragment, memo, useEffect, useRef, useState } from "react";
 import { Handle, Position, NodeProps, Node } from "@xyflow/react";
-import { KnowledgeNode, getNodeTypeMeta } from "@/lib/graph/types";
+import { KnowledgeNode, getNodeTypeMeta, OPERATION_STATUS_META, operationStatus } from "@/lib/graph/types";
 import { Side } from "@/lib/graph/handles";
 
 export interface ScientificNodeData extends Record<string, unknown> {
@@ -52,6 +52,7 @@ function ScientificNodeImpl({ data }: NodeProps<ScientificNodeType>) {
     highlighted,
   } = data;
   const meta = getNodeTypeMeta(knowledgeNode.type);
+  const statusMeta = OPERATION_STATUS_META[operationStatus(knowledgeNode.operation)];
   const cardRef = useRef<HTMLDivElement>(null);
   const [measured, setMeasured] = useState({ width: 0, height: 0 });
 
@@ -67,17 +68,31 @@ function ScientificNodeImpl({ data }: NodeProps<ScientificNodeType>) {
 
   return (
     <div style={{ opacity: dimmed ? 0.3 : 1 }} className="flex flex-col gap-1 transition-opacity">
-      <div className="flex items-center gap-1 px-1 text-[10px] font-medium text-zinc-400">
-        <span>{meta.icon}</span>
-        <span>{meta.category}</span>
+      <div className="flex items-center gap-2 px-1">
+        <div
+          className="inline-flex w-fit items-center gap-1 self-start rounded-md border px-2 py-0.5 text-[10px] font-semibold"
+          style={{
+            backgroundColor: `${statusMeta.colorDark}26`,
+            borderColor: `${statusMeta.colorDark}66`,
+            color: statusMeta.colorDark,
+          }}
+        >
+          {statusMeta.icon && <span>{statusMeta.icon}</span>}
+          <span>{statusMeta.label}</span>
+        </div>
+        <span className="flex items-center gap-1 text-[10px] font-medium text-zinc-400">
+          <span>{meta.icon}</span>
+          <span>{meta.category}</span>
+        </span>
       </div>
       <div
         ref={cardRef}
         style={{
-          borderColor: meta.color,
+          borderColor: statusMeta.colorDark,
+          borderStyle: statusMeta.dashed ? "dashed" : "solid",
           padding,
           fontSize,
-          boxShadow: highlighted ? `0 0 0 2px ${meta.color}` : undefined,
+          boxShadow: highlighted ? `0 0 0 2px ${statusMeta.colorDark}` : undefined,
         }}
         className="min-w-[200px] max-w-[260px] rounded-lg border-2 bg-zinc-900 text-zinc-100 shadow-md"
       >

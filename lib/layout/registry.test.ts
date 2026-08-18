@@ -7,11 +7,12 @@ const nodes: KnowledgeNode[] = ["a", "b", "c", "d"].map((id) => ({
   type: "Gene",
   label: id,
   description: "",
+  operation: "node.fetch",
 }));
 const edges: KnowledgeEdge[] = [
-  { id: "e1", source: "a", target: "b", type: "associatedWith" },
-  { id: "e2", source: "b", target: "c", type: "associatedWith" },
-  { id: "e3", source: "a", target: "d", type: "associatedWith" },
+  { id: "e1", source: "a", target: "b", type: "associatedWith", operation: "edge.fetch" },
+  { id: "e2", source: "b", target: "c", type: "associatedWith", operation: "edge.fetch" },
+  { id: "e3", source: "a", target: "d", type: "associatedWith", operation: "edge.fetch" },
 ];
 const sizes = Object.fromEntries(nodes.map((n) => [n.id, { width: 200, height: 80 }]));
 const options = { direction: "DOWN" as const, spacing: { node: 40, layer: 60, edge: 20, component: 60 } };

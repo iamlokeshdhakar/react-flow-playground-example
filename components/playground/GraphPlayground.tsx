@@ -16,7 +16,7 @@ import {
 } from "@xyflow/react";
 import { KNOWLEDGE_NODES, KNOWLEDGE_EDGES } from "@/lib/graph/data";
 import { getEdgeTypeLabel, KnowledgeEdge, KnowledgeNode } from "@/lib/graph/types";
-import { selectTopNodesByDegree } from "@/lib/graph/subset";
+import { selectTopNodesByDegree, filterByOperationStatus, countByOperationStatus } from "@/lib/graph/subset";
 import { CustomGraphData, parseCustomGraphJson } from "@/lib/graph/customData";
 import { LAYOUT_ENGINES, DEFAULT_LAYOUT_ENGINE_ID } from "@/lib/layout/registry";
 import { DEFAULT_NODE_SIZE, PositionedNode, RoutedPoint, Size } from "@/lib/layout/types";
@@ -39,14 +39,28 @@ import {
 import { Segment, countEdgeCrossings } from "@/lib/metrics/edgeCrossings";
 import { ScientificNode, ScientificNodeType } from "@/components/graph/ScientificNode";
 import { LabeledEdge, LabeledEdgeType } from "@/components/graph/edges/LabeledEdge";
+import { DiffNode, DiffNodeType } from "@/components/graph/DiffNode";
+import { DiffEdge, DiffEdgeType } from "@/components/graph/edges/DiffEdge";
+import { DiffLegend } from "@/components/graph/DiffLegend";
 import { ControlPanel } from "./ControlPanel";
 
-const NODE_TYPES = { scientific: ScientificNode };
-const EDGE_TYPES = { labeled: LabeledEdge };
+type PlaygroundNodeType = ScientificNodeType | DiffNodeType;
+type PlaygroundEdgeType = LabeledEdgeType | DiffEdgeType;
 
-function buildNodesFor(activeNodes: KnowledgeNode[], settings: PlaygroundSettings): ScientificNodeType[] {
+const NODE_TYPES = { scientific: ScientificNode, diff: DiffNode };
+const EDGE_TYPES = { labeled: LabeledEdge, diff: DiffEdge };
+
+function buildNodesFor(activeNodes: KnowledgeNode[], settings: PlaygroundSettings): PlaygroundNodeType[] {
   const activeSides = sidesForStrategy(settings.handleStrategy);
   const role = rolesForStrategy(settings.handleStrategy);
+  if (!settings.view.darkMode) {
+    return activeNodes.map((kn) => ({
+      id: kn.id,
+      type: "diff",
+      position: { x: 0, y: 0 },
+      data: { knowledgeNode: kn, activeSides, role, dimmed: false, highlighted: false },
+    }));
+  }
   return activeNodes.map((kn) => ({
     id: kn.id,
     type: "scientific",
@@ -66,7 +80,22 @@ function buildNodesFor(activeNodes: KnowledgeNode[], settings: PlaygroundSetting
   }));
 }
 
-function buildEdgesFor(activeEdges: KnowledgeEdge[], settings: PlaygroundSettings): LabeledEdgeType[] {
+function buildEdgesFor(activeEdges: KnowledgeEdge[], settings: PlaygroundSettings): PlaygroundEdgeType[] {
+  if (!settings.view.darkMode) {
+    return activeEdges.map((e) => ({
+      id: e.id,
+      source: e.source,
+      target: e.target,
+      type: "diff",
+      data: {
+        routing: settings.edgeRouting,
+        label: getEdgeTypeLabel(e.type),
+        operation: e.operation,
+        points: undefined,
+        dimmed: false,
+      },
+    }));
+  }
   return activeEdges.map((e) => ({
     id: e.id,
     source: e.source,
@@ -76,6 +105,7 @@ function buildEdgesFor(activeEdges: KnowledgeEdge[], settings: PlaygroundSetting
       routing: settings.edgeRouting,
       labelMode: settings.edgeLabelMode,
       label: getEdgeTypeLabel(e.type),
+      operation: e.operation,
       points: undefined,
       dimmed: false,
       crossing: false,
@@ -95,9 +125,14 @@ function GraphPlaygroundInner() {
   const baseNodes = customGraph?.nodes ?? KNOWLEDGE_NODES;
   const baseEdges = customGraph?.edges ?? KNOWLEDGE_EDGES;
 
-  const activeGraph = useMemo(
-    () => selectTopNodesByDegree(baseNodes, baseEdges, settings.nodeLimit),
-    [baseNodes, baseEdges, settings.nodeLimit]
+  const activeGraph = useMemo(() => {
+    const filtered = filterByOperationStatus(baseNodes, baseEdges, settings.operationFilter);
+    return selectTopNodesByDegree(filtered.nodes, filtered.edges, settings.nodeLimit);
+  }, [baseNodes, baseEdges, settings.operationFilter, settings.nodeLimit]);
+
+  const operationCounts = useMemo(
+    () => countByOperationStatus(baseNodes, baseEdges),
+    [baseNodes, baseEdges]
   );
 
   const loadCustomData = useCallback((raw: string): string | null => {
@@ -114,10 +149,10 @@ function GraphPlaygroundInner() {
     []
   );
 
-  const [nodes, setNodes, onNodesChange] = useNodesState<ScientificNodeType>(
+  const [nodes, setNodes, onNodesChange] = useNodesState<PlaygroundNodeType>(
     buildNodesFor(activeGraph.nodes, settings)
   );
-  const [edges, setEdges, onEdgesChange] = useEdgesState<LabeledEdgeType>(
+  const [edges, setEdges, onEdgesChange] = useEdgesState<PlaygroundEdgeType>(
     buildEdgesFor(activeGraph.edges, settings)
   );
   const [selectedNodeId, setSelectedNodeId] = useState<string | null>(null);
@@ -149,21 +184,28 @@ function GraphPlaygroundInner() {
       }
 
       setNodes((nds) =>
-        nds.map((n) => ({
-          ...n,
-          data: {
-            ...n.data,
-            activeSides,
-            role,
-            density: settings.nodeDensity,
-            padding: settings.nodePadding,
-            fontSize: settings.fontSize,
-            showNodeId: settings.debug.showNodeIds,
-            showDimensions: settings.debug.showDimensions,
-            dimmed: Boolean(selectedNodeId) && settings.debug.highlightConnected && !connectedIds.has(n.id),
-            highlighted: n.id === selectedNodeId,
-          },
-        }))
+        nds.map((n) => {
+          const dimmed = Boolean(selectedNodeId) && settings.debug.highlightConnected && !connectedIds.has(n.id);
+          const highlighted = n.id === selectedNodeId;
+          if (n.type === "diff") {
+            return { ...n, data: { ...n.data, activeSides, role, dimmed, highlighted } };
+          }
+          return {
+            ...n,
+            data: {
+              ...n.data,
+              activeSides,
+              role,
+              density: settings.nodeDensity,
+              padding: settings.nodePadding,
+              fontSize: settings.fontSize,
+              showNodeId: settings.debug.showNodeIds,
+              showDimensions: settings.debug.showDimensions,
+              dimmed,
+              highlighted,
+            },
+          };
+        })
       );
 
       function getPos(id: string): { x: number; y: number; width: number; height: number } | undefined {
@@ -215,17 +257,28 @@ function GraphPlaygroundInner() {
           const points = settings.edgeRouting === "elk-routed" ? elkPointsRef.current.get(e.id) : undefined;
           const bothConnected = connectedIds.has(e.source) && connectedIds.has(e.target);
           const dimmed = Boolean(selectedNodeId) && settings.debug.highlightConnected && !bothConnected;
-          return {
+          const base = {
             id: e.id,
             source: e.source,
             target: e.target,
             sourceHandle: assignment ? handleId(assignment.sourceSide, "source") : undefined,
             targetHandle: assignment ? handleId(assignment.targetSide, "target") : undefined,
-            type: "labeled",
+          };
+          if (!settings.view.darkMode) {
+            return {
+              ...base,
+              type: "diff" as const,
+              data: { routing: settings.edgeRouting, label: getEdgeTypeLabel(e.type), operation: e.operation, points, dimmed },
+            };
+          }
+          return {
+            ...base,
+            type: "labeled" as const,
             data: {
               routing: settings.edgeRouting,
               labelMode: settings.edgeLabelMode,
               label: getEdgeTypeLabel(e.type),
+              operation: e.operation,
               points,
               dimmed,
               crossing: settings.debug.highlightCrossings && crossingEdgeIds.has(e.id),
@@ -297,6 +350,7 @@ function GraphPlaygroundInner() {
         padding: settings.nodePadding,
         fontSize: settings.fontSize,
         handles: settings.handleStrategy,
+        darkMode: settings.view.darkMode,
       }),
     [settings]
   );
@@ -312,23 +366,41 @@ function GraphPlaygroundInner() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeGraph]);
 
+  // Dark mode toggled: the node/edge `type` discriminator itself changes (diff <-> scientific/labeled),
+  // so patching data in place isn't enough — rebuild fresh node/edge objects, then let layoutKey re-run layout.
+  useEffect(() => {
+    setSelectedNodeId(null);
+    frozenHandlesRef.current = {};
+    elkPointsRef.current = new Map();
+    setNodes(buildNodesFor(activeGraph.nodes, settings));
+    setEdges(buildEdgesFor(activeGraph.edges, settings));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [settings.view.darkMode]);
+
   // Layout-affecting settings changed: update node data (may change measured size), then re-layout.
   useEffect(() => {
     setNodes((nds) =>
-      nds.map((n) => ({
-        ...n,
-        data: {
-          ...n.data,
-          density: settings.nodeDensity,
-          padding: settings.nodePadding,
-          fontSize: settings.fontSize,
-          activeSides: sidesForStrategy(settings.handleStrategy),
-          role: rolesForStrategy(settings.handleStrategy),
-        },
-      }))
+      nds.map((n) => {
+        const activeSides = sidesForStrategy(settings.handleStrategy);
+        const role = rolesForStrategy(settings.handleStrategy);
+        if (n.type === "diff") {
+          return { ...n, data: { ...n.data, activeSides, role } };
+        }
+        return {
+          ...n,
+          data: {
+            ...n.data,
+            density: settings.nodeDensity,
+            padding: settings.nodePadding,
+            fontSize: settings.fontSize,
+            activeSides,
+            role,
+          },
+        };
+      })
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [settings.nodeDensity, settings.nodePadding, settings.fontSize, settings.handleStrategy]);
+  }, [settings.nodeDensity, settings.nodePadding, settings.fontSize, settings.handleStrategy, settings.view.darkMode]);
 
   useEffect(() => {
     if (!nodesInitialized) return;
@@ -352,14 +424,16 @@ function GraphPlaygroundInner() {
     selectedNodeId,
   ]);
 
-  const onNodeClick: NodeMouseHandler<ScientificNodeType> = useCallback((_event, node) => {
+  const onNodeClick: NodeMouseHandler<PlaygroundNodeType> = useCallback((_event, node) => {
     setSelectedNodeId((prev) => (prev === node.id ? null : node.id));
   }, []);
 
   const onPaneClick = useCallback(() => setSelectedNodeId(null), []);
 
+  const diffView = !settings.view.darkMode;
+
   return (
-    <div className="flex h-screen w-screen bg-zinc-950">
+    <div className={`flex h-screen w-screen ${diffView ? "bg-white" : "bg-zinc-950"}`}>
       <div className="relative flex-1">
         <ReactFlow
           nodes={nodes}
@@ -377,12 +451,19 @@ function GraphPlaygroundInner() {
           panOnScroll={settings.view.panOnScroll}
           proOptions={{ hideAttribution: true }}
         >
-          {settings.view.showBackground && <Background />}
-          {settings.view.showMiniMap && <MiniMap pannable zoomable className="!bg-zinc-900" />}
+          {settings.view.showBackground && <Background color={diffView ? "#d4d4d8" : undefined} />}
+          {settings.view.showMiniMap && (
+            <MiniMap pannable zoomable className={diffView ? "!bg-white" : "!bg-zinc-900"} />
+          )}
           {settings.view.showControls && <Controls />}
         </ReactFlow>
+        <DiffLegend dark={!diffView} />
         {(settings.debug.showLayoutTime || settings.debug.showCrossingCount) && (
-          <div className="absolute left-3 top-3 flex flex-col gap-1 rounded-lg border border-zinc-800 bg-zinc-900/90 px-3 py-2 text-xs text-zinc-300">
+          <div
+            className={`absolute left-3 top-3 flex flex-col gap-1 rounded-lg border px-3 py-2 text-xs ${
+              diffView ? "border-zinc-200 bg-white/90 text-zinc-600" : "border-zinc-800 bg-zinc-900/90 text-zinc-300"
+            }`}
+          >
             {settings.debug.showLayoutTime && layoutMs != null && <span>Layout time: {layoutMs.toFixed(1)}ms</span>}
             {settings.debug.showCrossingCount && <span>Edge crossings: {crossingCount}</span>}
           </div>
@@ -398,6 +479,7 @@ function GraphPlaygroundInner() {
         customNodeCount={baseNodes.length}
         customEdgeCount={baseEdges.length}
         defaultDataText={sampleDataText}
+        operationCounts={operationCounts}
       />
     </div>
   );

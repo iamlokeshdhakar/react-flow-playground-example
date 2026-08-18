@@ -20,12 +20,60 @@ export type EdgeType =
   | "contradicts"
   | "associatedWith";
 
+export type NodeOperation = "node.create" | "node.update" | "node.fetch" | "node.delete";
+export type EdgeOperation = "edge.create" | "edge.update" | "edge.fetch" | "edge.delete";
+export type OperationStatus = "new" | "existing" | "modified" | "deleted";
+
+export const NODE_OPERATIONS: NodeOperation[] = ["node.create", "node.update", "node.fetch", "node.delete"];
+export const EDGE_OPERATIONS: EdgeOperation[] = ["edge.create", "edge.update", "edge.fetch", "edge.delete"];
+
+export function isNodeOperation(value: string): value is NodeOperation {
+  return (NODE_OPERATIONS as string[]).includes(value);
+}
+
+export function isEdgeOperation(value: string): value is EdgeOperation {
+  return (EDGE_OPERATIONS as string[]).includes(value);
+}
+
+/** Maps a node/edge operation to the diff status ("new"/"existing"/"modified"/"deleted") that drives its visual styling. */
+export function operationStatus(operation: NodeOperation | EdgeOperation): OperationStatus {
+  const action = operation.split(".")[1];
+  switch (action) {
+    case "create":
+      return "new";
+    case "update":
+      return "modified";
+    case "delete":
+      return "deleted";
+    default:
+      return "existing";
+  }
+}
+
+export interface OperationStatusMeta {
+  label: string;
+  icon: string;
+  /** Accent color for a light background. */
+  color: string;
+  /** Accent color for a dark background — e.g. "existing" needs a light tone here since its light-mode near-black would be invisible on dark. */
+  colorDark: string;
+  dashed: boolean;
+}
+
+export const OPERATION_STATUS_META: Record<OperationStatus, OperationStatusMeta> = {
+  new: { label: "New", icon: "\u{2606}", color: "#4f46e5", colorDark: "#818cf8", dashed: true },
+  existing: { label: "Existing", icon: "", color: "#18181b", colorDark: "#e4e4e7", dashed: false },
+  modified: { label: "Modified", icon: "\u{270E}", color: "#8b5cf6", colorDark: "#a78bfa", dashed: false },
+  deleted: { label: "Deleted", icon: "\u{1F5D1}", color: "#ef4444", colorDark: "#f87171", dashed: true },
+};
+
 export interface KnowledgeNode {
   id: string;
   /** One of NodeType for the built-in dataset, but user-supplied custom data may use any string. */
   type: string;
   label: string;
   description: string;
+  operation: NodeOperation;
 }
 
 export interface KnowledgeEdge {
@@ -35,6 +83,7 @@ export interface KnowledgeEdge {
   /** One of EdgeType for the built-in dataset, but user-supplied custom data may use any string. */
   type: string;
   label?: string;
+  operation: EdgeOperation;
 }
 
 export interface NodeTypeMeta {
