@@ -3,13 +3,13 @@ import { toElkGraph, fromElkResult, runElk } from "./convert";
 import { KnowledgeNode, KnowledgeEdge } from "@/lib/graph/types";
 
 const nodes: KnowledgeNode[] = [
-  { id: "a", type: "Gene", label: "A", description: "" },
-  { id: "b", type: "Gene", label: "B", description: "" },
-  { id: "c", type: "Gene", label: "C", description: "" },
+  { id: "a", type: "Gene", label: "A", description: "", operation: "node.fetch" },
+  { id: "b", type: "Gene", label: "B", description: "", operation: "node.fetch" },
+  { id: "c", type: "Gene", label: "C", description: "", operation: "node.fetch" },
 ];
 const edges: KnowledgeEdge[] = [
-  { id: "e1", source: "a", target: "b", type: "associatedWith" },
-  { id: "e2", source: "b", target: "c", type: "associatedWith" },
+  { id: "e1", source: "a", target: "b", type: "associatedWith", operation: "edge.fetch" },
+  { id: "e2", source: "b", target: "c", type: "associatedWith", operation: "edge.fetch" },
 ];
 const sizes = {
   a: { width: 200, height: 80 },

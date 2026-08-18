@@ -1,3 +1,5 @@
+import { OperationStatus } from "@/lib/graph/types";
+
 export type HandleStrategy =
   | "left-right"
   | "top-bottom"
@@ -26,6 +28,7 @@ export interface PlaygroundSettings {
   nodeDensity: NodeDensity;
   nodePadding: number;
   fontSize: number;
+  operationFilter: Record<OperationStatus, boolean>;
   view: {
     fitView: boolean;
     animateLayout: boolean;
@@ -36,6 +39,7 @@ export interface PlaygroundSettings {
     panOnScroll: boolean;
     minZoom: number;
     maxZoom: number;
+    darkMode: boolean;
   };
   debug: {
     showNodeIds: boolean;
@@ -50,7 +54,7 @@ export interface PlaygroundSettings {
 
 export const INITIAL_SETTINGS: PlaygroundSettings = {
   layoutEngineId: "elk-layered",
-  nodeLimit: 10,
+  nodeLimit: Infinity,
   direction: "DOWN",
   spacing: { node: 50, layer: 80, edge: 20, component: 80 },
   handleStrategy: "auto-after-layout",
@@ -59,6 +63,7 @@ export const INITIAL_SETTINGS: PlaygroundSettings = {
   nodeDensity: "expanded",
   nodePadding: 12,
   fontSize: 13,
+  operationFilter: { new: true, existing: true, modified: true, deleted: true },
   view: {
     fitView: true,
     animateLayout: true,
@@ -69,6 +74,7 @@ export const INITIAL_SETTINGS: PlaygroundSettings = {
     panOnScroll: false,
     minZoom: 0.1,
     maxZoom: 2,
+    darkMode: false,
   },
   debug: {
     showNodeIds: false,
@@ -94,6 +100,7 @@ export type SettingsAction =
   | { type: "SET_FONT_SIZE"; value: number }
   | { type: "SET_VIEW_OPTION"; key: keyof PlaygroundSettings["view"]; value: boolean | number }
   | { type: "SET_DEBUG_OPTION"; key: keyof PlaygroundSettings["debug"]; value: boolean }
+  | { type: "SET_OPERATION_FILTER"; status: OperationStatus; value: boolean }
   | { type: "RESET" };
 
 export function settingsReducer(state: PlaygroundSettings, action: SettingsAction): PlaygroundSettings {
@@ -122,6 +129,8 @@ export function settingsReducer(state: PlaygroundSettings, action: SettingsActio
       return { ...state, view: { ...state.view, [action.key]: action.value } };
     case "SET_DEBUG_OPTION":
       return { ...state, debug: { ...state.debug, [action.key]: action.value } };
+    case "SET_OPERATION_FILTER":
+      return { ...state, operationFilter: { ...state.operationFilter, [action.status]: action.value } };
     case "RESET":
       return INITIAL_SETTINGS;
     default:

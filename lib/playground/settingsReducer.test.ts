@@ -15,6 +15,10 @@ describe("settingsReducer", () => {
     expect(next.layoutEngineId).toBe(INITIAL_SETTINGS.layoutEngineId);
   });
 
+  it("defaults nodeLimit to show every node (no cap)", () => {
+    expect(INITIAL_SETTINGS.nodeLimit).toBe(Infinity);
+  });
+
   it("SET_SPACING updates only the targeted spacing key", () => {
     const next = settingsReducer(INITIAL_SETTINGS, { type: "SET_SPACING", key: "layer", value: 999 });
     expect(next.spacing.layer).toBe(999);
@@ -25,6 +29,29 @@ describe("settingsReducer", () => {
     const next = settingsReducer(INITIAL_SETTINGS, { type: "SET_VIEW_OPTION", key: "showMiniMap", value: false });
     expect(next.view.showMiniMap).toBe(false);
     expect(next.view.showControls).toBe(INITIAL_SETTINGS.view.showControls);
+  });
+
+  it("defaults darkMode to off, so diff view is the default appearance", () => {
+    expect(INITIAL_SETTINGS.view.darkMode).toBe(false);
+  });
+
+  it("SET_VIEW_OPTION can toggle darkMode independently", () => {
+    const next = settingsReducer(INITIAL_SETTINGS, { type: "SET_VIEW_OPTION", key: "darkMode", value: true });
+    expect(next.view.darkMode).toBe(true);
+    expect(next.view.showMiniMap).toBe(INITIAL_SETTINGS.view.showMiniMap);
+  });
+
+  it("defaults operationFilter to showing all 4 statuses", () => {
+    expect(INITIAL_SETTINGS.operationFilter).toEqual({ new: true, existing: true, modified: true, deleted: true });
+  });
+
+  it("SET_OPERATION_FILTER updates only the targeted status", () => {
+    const next = settingsReducer(INITIAL_SETTINGS, { type: "SET_OPERATION_FILTER", status: "new", value: false });
+    expect(next.operationFilter.new).toBe(false);
+    expect(next.operationFilter.existing).toBe(true);
+    expect(next.operationFilter.modified).toBe(true);
+    expect(next.operationFilter.deleted).toBe(true);
+    expect(next.nodeLimit).toBe(INITIAL_SETTINGS.nodeLimit);
   });
 
   it("SET_DEBUG_OPTION updates only the targeted debug key", () => {

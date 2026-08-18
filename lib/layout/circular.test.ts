@@ -5,7 +5,7 @@ import { KnowledgeEdge, KnowledgeNode } from "@/lib/graph/types";
 const options = { direction: "DOWN" as const, spacing: { node: 40, layer: 60, edge: 20, component: 60 } };
 
 function makeNodes(ids: string[]): KnowledgeNode[] {
-  return ids.map((id) => ({ id, type: "Gene", label: id, description: "" }));
+  return ids.map((id) => ({ id, type: "Gene", label: id, description: "", operation: "node.fetch" }));
 }
 
 describe("circularEngine", () => {
@@ -59,7 +59,7 @@ describe("circularEngine", () => {
 
   it("passes through edges by id without inventing routing points", async () => {
     const nodes = makeNodes(["a", "b"]);
-    const edges: KnowledgeEdge[] = [{ id: "e1", source: "a", target: "b", type: "associatedWith" }];
+    const edges: KnowledgeEdge[] = [{ id: "e1", source: "a", target: "b", type: "associatedWith", operation: "edge.fetch" }];
     const sizes = Object.fromEntries(nodes.map((n) => [n.id, { width: 200, height: 80 }]));
     const result = await circularEngine.computeLayout(nodes, edges, sizes, options);
     expect(result.edges).toEqual([{ id: "e1" }]);

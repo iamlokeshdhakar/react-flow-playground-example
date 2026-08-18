@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { KNOWLEDGE_NODES, KNOWLEDGE_EDGES } from "./data";
+import { isNodeOperation, isEdgeOperation, operationStatus } from "./types";
 
 function degreeMap(edges: { source: string; target: string }[]) {
   const degree: Record<string, number> = {};
@@ -76,5 +77,25 @@ describe("hand-authored knowledge graph dataset", () => {
   it("represents all 10 node types", () => {
     const types = new Set(KNOWLEDGE_NODES.map((n) => n.type));
     expect(types.size).toBe(10);
+  });
+
+  it("gives every node a valid node.* operation and every edge a valid edge.* operation", () => {
+    for (const n of KNOWLEDGE_NODES) expect(isNodeOperation(n.operation)).toBe(true);
+    for (const e of KNOWLEDGE_EDGES) expect(isEdgeOperation(e.operation)).toBe(true);
+  });
+
+  it("demonstrates all 4 diff statuses (new/existing/modified/deleted) among the sample nodes", () => {
+    const statuses = new Set(KNOWLEDGE_NODES.map((n) => operationStatus(n.operation)));
+    expect(statuses).toEqual(new Set(["new", "existing", "modified", "deleted"]));
+  });
+
+  it("demonstrates all 4 diff statuses (new/existing/modified/deleted) among the sample edges", () => {
+    const statuses = new Set(KNOWLEDGE_EDGES.map((e) => operationStatus(e.operation)));
+    expect(statuses).toEqual(new Set(["new", "existing", "modified", "deleted"]));
+  });
+
+  it("keeps 'existing' as the overwhelming majority status, since most of the dataset is pre-existing knowledge", () => {
+    const nonExisting = KNOWLEDGE_NODES.filter((n) => operationStatus(n.operation) !== "existing");
+    expect(nonExisting.length).toBeLessThan(KNOWLEDGE_NODES.length / 4);
   });
 });

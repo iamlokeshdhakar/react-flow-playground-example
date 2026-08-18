@@ -68,16 +68,21 @@ export function SliderField({
 
 export function ToggleField({
   label,
+  sublabel,
   checked,
   onChange,
 }: {
   label: string;
+  sublabel?: string;
   checked: boolean;
   onChange: (v: boolean) => void;
 }) {
   return (
     <label className="flex items-center justify-between gap-2 text-sm text-zinc-300">
-      <span>{label}</span>
+      <span className="flex flex-col">
+        <span>{label}</span>
+        {sublabel && <span className="text-[10px] text-zinc-500">{sublabel}</span>}
+      </span>
       <input type="checkbox" checked={checked} onChange={(e) => onChange(e.target.checked)} />
     </label>
   );
