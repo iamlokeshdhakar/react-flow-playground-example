@@ -12,6 +12,7 @@ import { ViewControls } from "./controls/ViewControls";
 import { DebugControls } from "./controls/DebugControls";
 import { DataControls } from "./controls/DataControls";
 import { OperationFilterControls } from "./controls/OperationFilterControls";
+import { PaperPrototypeViewer } from "@/components/papers/PaperPrototypeViewer";
 
 export function ControlPanel({
   settings,
@@ -47,6 +48,7 @@ export function ControlPanel({
         >
           Reset to defaults
         </button>
+        <PaperPrototypeViewer onSelectPayload={onLoadCustomData} />
       </div>
       <DataControls
         onLoad={onLoadCustomData}
