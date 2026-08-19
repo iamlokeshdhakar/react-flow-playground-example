@@ -1,0 +1,1557 @@
+[
+  {
+    "id": "paper-1",
+    "title": "Rapid Taste-Aversion Learning by an Isolated Molluscan Central Nervous System",
+    "pdf": "/mollusca/01.pdf",
+    "prototypes": [
+      {
+        "id": "prototype-1",
+        "name": "Prototype 1 Graph",
+        "description": "Full-text extraction",
+        "payload": {
+          "nodes": [
+            {
+              "id": "84643b61-9611-4da3-beaf-abb61d358d48",
+              "type": "Species",
+              "label": "Pan troglodytes",
+              "description": "The common chimpanzee species, a socially complex great ape native to tropical Africa and characterized by fission-fusion societies, extensive behavioral repertoires, and diverse forms of tool use.",
+              "operation": "node.fetch"
+            },
+            {
+              "id": "3e63d616-6774-4a67-b709-c0cab77833e1",
+              "type": "Social System",
+              "label": "Fission-fusion social system",
+              "description": "A social system in which stable community membership coexists with flexible changes in subgroup composition, association, and spatial grouping.",
+              "operation": "node.fetch"
+            },
+            {
+              "id": "7a7e0c2b-aa88-4c4e-81a7-e777edca589d",
+              "type": "Social Group",
+              "label": "Chimpanzee Party",
+              "description": "A temporary subgroup of chimpanzees formed within a larger community during activities such as feeding, travel, resting, or social interaction.",
+              "operation": "node.fetch"
+            },
+            {
+              "id": "d9bccc45-cb99-42fe-95c4-674a4fa5b3da",
+              "type": "Behavior",
+              "label": "Grooming",
+              "description": "A social behavior in which chimpanzees manually inspect and clean the body surface of another individual and which can also function in affiliative relationships.",
+              "operation": "node.fetch"
+            },
+            {
+              "id": "41316585-110b-437f-8f8f-d1a34964249c",
+              "type": "Social Relationship",
+              "label": "Social Bond",
+              "description": "A relatively stable affiliative relationship between chimpanzees characterized by repeated association and grooming or other affiliative interactions.",
+              "operation": "node.fetch"
+            },
+            {
+              "id": "b8c370c3-d4b2-4a2d-98bc-d30612f3dd33",
+              "type": "Method",
+              "label": "Social network analysis",
+              "description": "A quantitative approach used in the study to characterize chimpanzee social structures and relationships at individual and group levels.",
+              "operation": "node.fetch"
+            },
+            {
+              "id": "869396e7-5d0c-4918-a5ad-dc98a053217b",
+              "type": "Social Group",
+              "label": "Chimpanzee Community",
+              "description": "A relatively stable social unit of chimpanzees occupying a shared home range and containing individuals that participate in the species' fission-fusion social system.",
+              "operation": "node.fetch"
+            },
+            {
+              "id": "c4604090-1d7a-418d-8dfb-8af1e6fc08cf",
+              "type": "Concept",
+              "label": "Chimpanzee Intentional Communication",
+              "description": "Communication in which chimpanzees produce signals flexibly in contexts suggesting that they monitor and influence the attention or behavior of recipients.",
+              "operation": "node.fetch"
+            },
+            {
+              "id": "3e8703fd-7297-4f7f-a49e-013ae7251282",
+              "type": "Concept",
+              "label": "Chimpanzee culture",
+              "description": "Population-level behavioral variation interpreted as culturally transmitted when behaviors and associated knowledge are acquired and maintained through social learning.",
+              "operation": "node.fetch"
+            },
+            {
+              "id": "c30f96d1-dedb-46f9-becf-738a8ffd4899",
+              "type": "Concept",
+              "label": "Social learning",
+              "description": "Learning influenced by observing or interacting with other individuals and considered important in the acquisition and maintenance of chimpanzee behavioral traditions.",
+              "operation": "node.fetch"
+            },
+            {
+              "id": "89d934c5-869b-44d4-b8b1-0e0ff2d83be2",
+              "type": "Behavior",
+              "label": "Chimpanzee Gestural Communication",
+              "description": "Communication using bodily movements, postures, or other intentional gestures during chimpanzee social interactions.",
+              "operation": "node.fetch"
+            },
+            {
+              "id": "edc436b2-b5c4-49d6-9ab3-30d62553b226",
+              "type": "Behavior",
+              "label": "Chimpanzee vocal communication",
+              "description": "Communication through vocal signals used by chimpanzees in social and ecological contexts.",
+              "operation": "node.fetch"
+            },
+            {
+              "id": "2fcba4ff-d752-4078-b2f2-762dcd4bef1a",
+              "type": "Behavior",
+              "label": "Chimpanzee social bonding",
+              "description": "Social bonding among chimpanzees expressed through patterns of association and affiliative relationships such as proximity and grooming.",
+              "operation": "node.fetch"
+            },
+            {
+              "id": "dc1d1f7e-ed8b-417f-8dd7-437fe4170e0a",
+              "type": "Concept",
+              "label": "Fission-Fusion Social Structure",
+              "description": "A chimpanzee social organization in which a larger community repeatedly divides into temporary parties that change in composition over time.",
+              "operation": "node.fetch"
+            },
+            {
+              "id": "c3e2716e-b624-4f42-bed1-1fb3937f0613",
+              "type": "Subspecies",
+              "label": "Pan troglodytes verus",
+              "description": "The western chimpanzee subspecies distributed across parts of West Africa and represented in research on behavior, ecology, genetics, and conservation.",
+              "operation": "node.fetch"
+            },
+            {
+              "id": "ee9551e8-7630-4aec-a781-bab17e986c5e",
+              "type": "Location",
+              "label": "Budongo Forest",
+              "description": "A tropical forest in western Uganda supporting a long-term studied chimpanzee population, including the Sonso community.",
+              "operation": "node.fetch"
+            },
+            {
+              "id": "bbaeb441-6bcb-4b6d-b4d0-ed677ed39e2c",
+              "type": "Location",
+              "label": "Mahale Mountains National Park",
+              "description": "A protected area on the eastern shore of Lake Tanganyika in Tanzania containing one of the longest-running field studies of wild chimpanzees.",
+              "operation": "node.fetch"
+            },
+            {
+              "id": "ba6d1f73-d013-4c62-8cfd-e0b4340d3411",
+              "type": "Community",
+              "label": "Ngogo chimpanzee community",
+              "description": "A large chimpanzee community in Kibale National Park that has been extensively studied for social organization, ranging, hunting, reproduction, and intergroup behavior.",
+              "operation": "node.fetch"
+            },
+            {
+              "id": "268ff032-57df-4b92-b36e-9456a030537b",
+              "type": "Social Behavior",
+              "label": "Chimpanzee Grooming Partner Preference",
+              "description": "Differential tendency of chimpanzees to groom particular social partners rather than grooming partners randomly.",
+              "operation": "node.fetch"
+            },
+            {
+              "id": "new:paper2.pdf-p1-5:n1",
+              "type": "Species",
+              "label": "Gorilla",
+              "description": "A primate species compared with chimpanzees in relation to social organisation, group size, and social complexity.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p1-5:n2",
+              "type": "Cognitive Concept",
+              "label": "Social brain hypothesis",
+              "description": "Hypothesis proposing that the cognitive demands of complex social environments contributed to the evolution of larger primate brains, particularly expanded neocortex.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p1-5:n3",
+              "type": "Social Trait",
+              "label": "Social complexity",
+              "description": "Complexity of social relationships and social structure within groups or communities, proposed as a focus for quantitative comparison across species and group sizes.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p1-5:n4",
+              "type": "Social Measure",
+              "label": "Group size",
+              "description": "Number of individuals in a primate social group or chimpanzee community, used as a coarse proxy for social complexity.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p1-5:n5",
+              "type": "Trait",
+              "label": "Brain size",
+              "description": "Relative brain size discussed in relation to primate group size and social cognition.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p1-5:n6",
+              "type": "Cognitive Trait",
+              "label": "Neocortex size",
+              "description": "Relative neocortex size or neocortex-to-brain ratio discussed as an indicator of cognitive capacity and its association with group size.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p1-5:n7",
+              "type": "Community",
+              "label": "Chimpanzee community",
+              "description": "Stable broader social unit of chimpanzees within which individuals associate in temporary parties.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p1-5:n8",
+              "type": "Vocalization",
+              "label": "Vocalisations",
+              "description": "Vocal communication interactions considered as a possible component of social relationship maintenance and social network measurement.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p1-5:n9",
+              "type": "Gesture",
+              "label": "Gestures",
+              "description": "Gestural communication interactions considered as a possible component of social relationship maintenance and social network measurement.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p1-5:n10",
+              "type": "Social Structure",
+              "label": "Stable cohesive social groups",
+              "description": "Social structure characterized by stable group membership and high spatial and temporal cohesion, contrasted with chimpanzee fission-fusion organisation.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p6-10:n1",
+              "type": "Social Process",
+              "label": "Social differentiation",
+              "description": "Flexible adjustment in the number of strong and weak social bonds maintained by primates, described as reducing the cognitive demands of managing social relationships.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p6-10:n2",
+              "type": "Social Relationship",
+              "label": "Strong social bonds",
+              "description": "Close social bonds that chimpanzees maintain in relatively small numbers, particularly in large groups.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p6-10:n3",
+              "type": "Social Relationship",
+              "label": "Weak social bonds",
+              "description": "Less strong social ties that chimpanzees maintain in larger numbers, especially in large groups.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p6-10:n4",
+              "type": "Cognitive Process",
+              "label": "Social relationship tracking",
+              "description": "Retention and manipulation of information about social relationships, including indirect or third-party relationships.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p6-10:n5",
+              "type": "Cognitive Concept",
+              "label": "Social knowledge",
+              "description": "Information that primates retain and update about conspecifics and the outcomes of social interactions.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p6-10:n6",
+              "type": "Cognitive Process",
+              "label": "Social information updating",
+              "description": "Integration of information to update knowledge about conspecifics and predict outcomes of social interactions.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p6-10:n7",
+              "type": "Population Measure",
+              "label": "Group size",
+              "description": "The number of individuals in a chimpanzee social group or community, considered in comparisons of small, medium, and large groups.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p6-10:n8",
+              "type": "Behavior",
+              "label": "Grooming",
+              "description": "A behavioral interaction proposed for use in network analyses of chimpanzee social relationships.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p6-10:n9",
+              "type": "Communication Behavior",
+              "label": "Gestural communication",
+              "description": "Communication through gestures, identified as a behavioral interaction for examining chimpanzee social relationships.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p6-10:n10",
+              "type": "Communication Behavior",
+              "label": "Vocal communication",
+              "description": "Communication through vocalizations, identified as a behavioral interaction for examining chimpanzee social relationships.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p6-10:n11",
+              "type": "Behavioral Measure",
+              "label": "Glucocorticoid levels",
+              "description": "Hormone levels proposed as an objective biological measure of physiological well-being and social stress in chimpanzees.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p6-10:n12",
+              "type": "Ecological Condition",
+              "label": "Social stress",
+              "description": "Stress associated with sociality, competition, and the demands of managing social relationships in groups.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p6-10:n13",
+              "type": "Cognitive Ability",
+              "label": "Cognitive flexibility",
+              "description": "The ability to flexibly adjust behavior according to the current social situation.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p11-15:n1",
+              "type": "Concept",
+              "label": "Social complexity",
+              "description": "A social system in which individuals interact with many unrelated individuals across multiple social contexts.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p11-15:n2",
+              "type": "Concept",
+              "label": "Cultural complexity",
+              "description": "A system containing a larger number of distinct behavioral forms specific to a social group.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p11-15:n3",
+              "type": "Communication Trait",
+              "label": "Communication dialects",
+              "description": "Culturally acquired differences in the form of the same communication signal type.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p11-15:n5",
+              "type": "Communication Trait",
+              "label": "Vocal repertoire size",
+              "description": "The size of an animal's vocal communication repertoire.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p11-15:n6",
+              "type": "Social Behavior",
+              "label": "Social behavior",
+              "description": "Behavioral organization and interaction among social individuals, including the regulation of social relationships.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p11-15:n7",
+              "type": "Social Network",
+              "label": "Weighted directed social network",
+              "description": "A social network in which ties have numerical weights reflecting interaction rate or frequency and may differ in direction between individuals.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p11-15:n8",
+              "type": "Social Network Property",
+              "label": "Weighted ties",
+              "description": "Network ties assigned numerical values based on the rate or frequency of behavioral interaction.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p11-15:n9",
+              "type": "Social Network Property",
+              "label": "Directed ties",
+              "description": "Network ties whose value may differ by direction between two individuals when interactions are asymmetric.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p16-17:n1",
+              "type": "Cultural Trait",
+              "label": "Grooming hand-clasp",
+              "description": "A local custom of wild chimpanzees involving a hand-clasp during grooming, referenced for the Mahale Mountains, Tanzania.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p16-17:n2",
+              "type": "Vocalization",
+              "label": "Grooming-associated sounds",
+              "description": "Sounds produced by chimpanzees in association with grooming, referenced in work on the Ngogo chimpanzee community.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p16-17:n3",
+              "type": "Vocalization",
+              "label": "Copulation calls",
+              "description": "Vocalizations used by female chimpanzees during copulation and discussed in relation to social competition.",
+              "operation": "node.create"
+            }
+          ],
+          "edges": [
+            {
+              "id": "35614a18-f5f3-4137-93d2-31c9e2bb54dd",
+              "source": "d9bccc45-cb99-42fe-95c4-674a4fa5b3da",
+              "target": "84643b61-9611-4da3-beaf-abb61d358d48",
+              "type": "performed_by",
+              "operation": "edge.fetch"
+            },
+            {
+              "id": "bc315178-5986-40bc-b145-2f59637a08e5",
+              "source": "3e63d616-6774-4a67-b709-c0cab77833e1",
+              "target": "7a7e0c2b-aa88-4c4e-81a7-e777edca589d",
+              "type": "characterized_by",
+              "operation": "edge.fetch"
+            },
+            {
+              "id": "65734cf8-3057-425b-8ea2-e6b460aa3fc2",
+              "source": "7a7e0c2b-aa88-4c4e-81a7-e777edca589d",
+              "target": "869396e7-5d0c-4918-a5ad-dc98a053217b",
+              "type": "part_of",
+              "operation": "edge.fetch"
+            },
+            {
+              "id": "734be57b-a215-4728-9b68-c791c4d0acf7",
+              "source": "b8c370c3-d4b2-4a2d-98bc-d30612f3dd33",
+              "target": "2fcba4ff-d752-4078-b2f2-762dcd4bef1a",
+              "type": "analyzes",
+              "operation": "edge.fetch"
+            },
+            {
+              "id": "e5",
+              "source": "3e63d616-6774-4a67-b709-c0cab77833e1",
+              "target": "84643b61-9611-4da3-beaf-abb61d358d48",
+              "type": "characteristic_of",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e6",
+              "source": "3e63d616-6774-4a67-b709-c0cab77833e1",
+              "target": "7a7e0c2b-aa88-4c4e-81a7-e777edca589d",
+              "type": "includes",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e7",
+              "source": "new:paper2.pdf-p1-5:n7",
+              "target": "new:paper2.pdf-p1-5:n4",
+              "type": "has_property",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e8",
+              "source": "7a7e0c2b-aa88-4c4e-81a7-e777edca589d",
+              "target": "new:paper2.pdf-p1-5:n7",
+              "type": "part_of",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e9",
+              "source": "d9bccc45-cb99-42fe-95c4-674a4fa5b3da",
+              "target": "41316585-110b-437f-8f8f-d1a34964249c",
+              "type": "contributes_to",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e10",
+              "source": "new:paper2.pdf-p1-5:n2",
+              "target": "new:paper2.pdf-p1-5:n5",
+              "type": "explains",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e11",
+              "source": "new:paper2.pdf-p1-5:n6",
+              "target": "new:paper2.pdf-p1-5:n4",
+              "type": "associated_with",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e12",
+              "source": "new:paper2.pdf-p1-5:n5",
+              "target": "new:paper2.pdf-p1-5:n4",
+              "type": "associated_with",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e13",
+              "source": "new:paper2.pdf-p1-5:n4",
+              "target": "new:paper2.pdf-p1-5:n3",
+              "type": "represents",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e14",
+              "source": "b8c370c3-d4b2-4a2d-98bc-d30612f3dd33",
+              "target": "new:paper2.pdf-p1-5:n3",
+              "type": "used_for",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e15",
+              "source": "b8c370c3-d4b2-4a2d-98bc-d30612f3dd33",
+              "target": "41316585-110b-437f-8f8f-d1a34964249c",
+              "type": "analyzes",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e16",
+              "source": "new:paper2.pdf-p1-5:n3",
+              "target": "d9bccc45-cb99-42fe-95c4-674a4fa5b3da",
+              "type": "may_include",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e17",
+              "source": "new:paper2.pdf-p1-5:n3",
+              "target": "new:paper2.pdf-p1-5:n8",
+              "type": "may_include",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e18",
+              "source": "new:paper2.pdf-p1-5:n3",
+              "target": "new:paper2.pdf-p1-5:n9",
+              "type": "may_include",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e19",
+              "source": "new:paper2.pdf-p1-5:n10",
+              "target": "new:paper2.pdf-p1-5:n1",
+              "type": "characteristic_of",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e20",
+              "source": "3e63d616-6774-4a67-b709-c0cab77833e1",
+              "target": "869396e7-5d0c-4918-a5ad-dc98a053217b",
+              "type": "involves",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e21",
+              "source": "b8c370c3-d4b2-4a2d-98bc-d30612f3dd33",
+              "target": "3e63d616-6774-4a67-b709-c0cab77833e1",
+              "type": "used_in",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e22",
+              "source": "b8c370c3-d4b2-4a2d-98bc-d30612f3dd33",
+              "target": "new:paper2.pdf-p6-10:n4",
+              "type": "analyzes",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e23",
+              "source": "new:paper2.pdf-p6-10:n1",
+              "target": "new:paper2.pdf-p6-10:n2",
+              "type": "involves",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e24",
+              "source": "new:paper2.pdf-p6-10:n1",
+              "target": "new:paper2.pdf-p6-10:n3",
+              "type": "involves",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e25",
+              "source": "new:paper2.pdf-p6-10:n2",
+              "target": "84643b61-9611-4da3-beaf-abb61d358d48",
+              "type": "characteristic_of",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e26",
+              "source": "new:paper2.pdf-p6-10:n3",
+              "target": "84643b61-9611-4da3-beaf-abb61d358d48",
+              "type": "characteristic_of",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e27",
+              "source": "new:paper2.pdf-p6-10:n4",
+              "target": "new:paper2.pdf-p6-10:n5",
+              "type": "informs",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e28",
+              "source": "c4604090-1d7a-418d-8dfb-8af1e6fc08cf",
+              "target": "new:paper2.pdf-p6-10:n6",
+              "type": "facilitates",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e29",
+              "source": "c4604090-1d7a-418d-8dfb-8af1e6fc08cf",
+              "target": "new:paper2.pdf-p6-10:n5",
+              "type": "increases",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e30",
+              "source": "new:paper2.pdf-p6-10:n7",
+              "target": "new:paper2.pdf-p6-10:n1",
+              "type": "influences",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e31",
+              "source": "new:paper2.pdf-p6-10:n7",
+              "target": "new:paper2.pdf-p6-10:n4",
+              "type": "increases_need_for",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e32",
+              "source": "new:paper2.pdf-p6-10:n8",
+              "target": "new:paper2.pdf-p6-10:n4",
+              "type": "used_for",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e33",
+              "source": "new:paper2.pdf-p6-10:n9",
+              "target": "new:paper2.pdf-p6-10:n4",
+              "type": "used_for",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e34",
+              "source": "new:paper2.pdf-p6-10:n10",
+              "target": "new:paper2.pdf-p6-10:n4",
+              "type": "used_for",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e35",
+              "source": "new:paper2.pdf-p6-10:n7",
+              "target": "new:paper2.pdf-p6-10:n12",
+              "type": "can_increase",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e36",
+              "source": "new:paper2.pdf-p6-10:n12",
+              "target": "new:paper2.pdf-p6-10:n11",
+              "type": "can_increase",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e37",
+              "source": "new:paper2.pdf-p6-10:n1",
+              "target": "new:paper2.pdf-p6-10:n12",
+              "type": "can_reduce",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e38",
+              "source": "new:paper2.pdf-p6-10:n13",
+              "target": "new:paper2.pdf-p6-10:n4",
+              "type": "involved_in",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e39",
+              "source": "c30f96d1-dedb-46f9-becf-738a8ffd4899",
+              "target": "3e8703fd-7297-4f7f-a49e-013ae7251282",
+              "type": "contributes_to",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e40",
+              "source": "3e8703fd-7297-4f7f-a49e-013ae7251282",
+              "target": "2fcba4ff-d752-4078-b2f2-762dcd4bef1a",
+              "type": "can_support",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e41",
+              "source": "new:paper2.pdf-p11-15:n1",
+              "target": "new:paper2.pdf-p11-15:n2",
+              "type": "can_involve",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e42",
+              "source": "new:paper2.pdf-p11-15:n2",
+              "target": "new:paper2.pdf-p11-15:n1",
+              "type": "contributes_to",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e43",
+              "source": "3e8703fd-7297-4f7f-a49e-013ae7251282",
+              "target": "new:paper2.pdf-p11-15:n3",
+              "type": "can_produce",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e44",
+              "source": "89d934c5-869b-44d4-b8b1-0e0ff2d83be2",
+              "target": "new:paper2.pdf-p11-15:n6",
+              "type": "can_influence",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e45",
+              "source": "edc436b2-b5c4-49d6-9ab3-30d62553b226",
+              "target": "new:paper2.pdf-p11-15:n6",
+              "type": "can_influence",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e46",
+              "source": "new:paper2.pdf-p11-15:n5",
+              "target": "new:paper2.pdf-p1-5:n4",
+              "type": "associated_with",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e47",
+              "source": "b8c370c3-d4b2-4a2d-98bc-d30612f3dd33",
+              "target": "89d934c5-869b-44d4-b8b1-0e0ff2d83be2",
+              "type": "analyzes",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e48",
+              "source": "b8c370c3-d4b2-4a2d-98bc-d30612f3dd33",
+              "target": "edc436b2-b5c4-49d6-9ab3-30d62553b226",
+              "type": "analyzes",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e49",
+              "source": "b8c370c3-d4b2-4a2d-98bc-d30612f3dd33",
+              "target": "new:paper2.pdf-p11-15:n7",
+              "type": "analyzes",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e50",
+              "source": "new:paper2.pdf-p11-15:n7",
+              "target": "new:paper2.pdf-p11-15:n8",
+              "type": "has_property",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e51",
+              "source": "new:paper2.pdf-p11-15:n7",
+              "target": "new:paper2.pdf-p11-15:n9",
+              "type": "has_property",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e52",
+              "source": "dc1d1f7e-ed8b-417f-8dd7-437fe4170e0a",
+              "target": "84643b61-9611-4da3-beaf-abb61d358d48",
+              "type": "characteristic_of",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e53",
+              "source": "new:paper2.pdf-p1-5:n4",
+              "target": "new:paper2.pdf-p11-15:n7",
+              "type": "influences",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e54",
+              "source": "new:paper2.pdf-p16-17:n1",
+              "target": "d9bccc45-cb99-42fe-95c4-674a4fa5b3da",
+              "type": "subtype_of",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e55",
+              "source": "new:paper2.pdf-p16-17:n1",
+              "target": "bbaeb441-6bcb-4b6d-b4d0-ed677ed39e2c",
+              "type": "observed_in",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e56",
+              "source": "new:paper2.pdf-p16-17:n2",
+              "target": "ba6d1f73-d013-4c62-8cfd-e0b4340d3411",
+              "type": "observed_in",
+              "operation": "edge.create"
+            }
+          ]
+        }
+      },
+      {
+        "id": "prototype-2",
+        "name": "Prototype 2 Graph",
+        "description": "Section + vector search extraction",
+        "payload": {
+          "nodes": [
+            {
+              "id": "84643b61-9611-4da3-beaf-abb61d358d48",
+              "type": "Species",
+              "label": "Pan troglodytes",
+              "description": "The common chimpanzee species, a socially complex great ape native to tropical Africa and characterized by fission-fusion societies, extensive behavioral repertoires, and diverse forms of tool use.",
+              "operation": "node.fetch"
+            },
+            {
+              "id": "3e63d616-6774-4a67-b709-c0cab77833e1",
+              "type": "Social System",
+              "label": "Fission-fusion social system",
+              "description": "A social system in which stable community membership coexists with flexible changes in subgroup composition, association, and spatial grouping.",
+              "operation": "node.fetch"
+            },
+            {
+              "id": "7a7e0c2b-aa88-4c4e-81a7-e777edca589d",
+              "type": "Social Group",
+              "label": "Chimpanzee Party",
+              "description": "A temporary subgroup of chimpanzees formed within a larger community during activities such as feeding, travel, resting, or social interaction.",
+              "operation": "node.fetch"
+            },
+            {
+              "id": "d9bccc45-cb99-42fe-95c4-674a4fa5b3da",
+              "type": "Behavior",
+              "label": "Grooming",
+              "description": "A social behavior in which chimpanzees manually inspect and clean the body surface of another individual and which can also function in affiliative relationships.",
+              "operation": "node.fetch"
+            },
+            {
+              "id": "41316585-110b-437f-8f8f-d1a34964249c",
+              "type": "Social Relationship",
+              "label": "Social Bond",
+              "description": "A relatively stable affiliative relationship between chimpanzees characterized by repeated association and grooming or other affiliative interactions.",
+              "operation": "node.fetch"
+            },
+            {
+              "id": "b8c370c3-d4b2-4a2d-98bc-d30612f3dd33",
+              "type": "Method",
+              "label": "Social network analysis",
+              "description": "A quantitative approach used in the study to characterize chimpanzee social structures and relationships at individual and group levels.",
+              "operation": "node.fetch"
+            },
+            {
+              "id": "869396e7-5d0c-4918-a5ad-dc98a053217b",
+              "type": "Social Group",
+              "label": "Chimpanzee Community",
+              "description": "A relatively stable social unit of chimpanzees occupying a shared home range and containing individuals that participate in the species' fission-fusion social system.",
+              "operation": "node.fetch"
+            },
+            {
+              "id": "c4604090-1d7a-418d-8dfb-8af1e6fc08cf",
+              "type": "Concept",
+              "label": "Chimpanzee Intentional Communication",
+              "description": "Communication in which chimpanzees produce signals flexibly in contexts suggesting that they monitor and influence the attention or behavior of recipients.",
+              "operation": "node.fetch"
+            },
+            {
+              "id": "3e8703fd-7297-4f7f-a49e-013ae7251282",
+              "type": "Concept",
+              "label": "Chimpanzee culture",
+              "description": "Population-level behavioral variation interpreted as culturally transmitted when behaviors and associated knowledge are acquired and maintained through social learning.",
+              "operation": "node.fetch"
+            },
+            {
+              "id": "c30f96d1-dedb-46f9-becf-738a8ffd4899",
+              "type": "Concept",
+              "label": "Social learning",
+              "description": "Learning influenced by observing or interacting with other individuals and considered important in the acquisition and maintenance of chimpanzee behavioral traditions.",
+              "operation": "node.fetch"
+            },
+            {
+              "id": "89d934c5-869b-44d4-b8b1-0e0ff2d83be2",
+              "type": "Behavior",
+              "label": "Chimpanzee Gestural Communication",
+              "description": "Communication using bodily movements, postures, or other intentional gestures during chimpanzee social interactions.",
+              "operation": "node.fetch"
+            },
+            {
+              "id": "edc436b2-b5c4-49d6-9ab3-30d62553b226",
+              "type": "Behavior",
+              "label": "Chimpanzee vocal communication",
+              "description": "Communication through vocal signals used by chimpanzees in social and ecological contexts.",
+              "operation": "node.fetch"
+            },
+            {
+              "id": "2fcba4ff-d752-4078-b2f2-762dcd4bef1a",
+              "type": "Behavior",
+              "label": "Chimpanzee social bonding",
+              "description": "Social bonding among chimpanzees expressed through patterns of association and affiliative relationships such as proximity and grooming.",
+              "operation": "node.fetch"
+            },
+            {
+              "id": "dc1d1f7e-ed8b-417f-8dd7-437fe4170e0a",
+              "type": "Concept",
+              "label": "Fission-Fusion Social Structure",
+              "description": "A chimpanzee social organization in which a larger community repeatedly divides into temporary parties that change in composition over time.",
+              "operation": "node.fetch"
+            },
+            {
+              "id": "c3e2716e-b624-4f42-bed1-1fb3937f0613",
+              "type": "Subspecies",
+              "label": "Pan troglodytes verus",
+              "description": "The western chimpanzee subspecies distributed across parts of West Africa and represented in research on behavior, ecology, genetics, and conservation.",
+              "operation": "node.fetch"
+            },
+            {
+              "id": "ee9551e8-7630-4aec-a781-bab17e986c5e",
+              "type": "Location",
+              "label": "Budongo Forest",
+              "description": "A tropical forest in western Uganda supporting a long-term studied chimpanzee population, including the Sonso community.",
+              "operation": "node.fetch"
+            },
+            {
+              "id": "bbaeb441-6bcb-4b6d-b4d0-ed677ed39e2c",
+              "type": "Location",
+              "label": "Mahale Mountains National Park",
+              "description": "A protected area on the eastern shore of Lake Tanganyika in Tanzania containing one of the longest-running field studies of wild chimpanzees.",
+              "operation": "node.fetch"
+            },
+            {
+              "id": "ba6d1f73-d013-4c62-8cfd-e0b4340d3411",
+              "type": "Community",
+              "label": "Ngogo chimpanzee community",
+              "description": "A large chimpanzee community in Kibale National Park that has been extensively studied for social organization, ranging, hunting, reproduction, and intergroup behavior.",
+              "operation": "node.fetch"
+            },
+            {
+              "id": "268ff032-57df-4b92-b36e-9456a030537b",
+              "type": "Social Behavior",
+              "label": "Chimpanzee Grooming Partner Preference",
+              "description": "Differential tendency of chimpanzees to groom particular social partners rather than grooming partners randomly.",
+              "operation": "node.fetch"
+            },
+            {
+              "id": "new:paper2.pdf-p1-5:n1",
+              "type": "Species",
+              "label": "Gorilla",
+              "description": "A primate species compared with chimpanzees in relation to social organisation, group size, and social complexity.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p1-5:n2",
+              "type": "Cognitive Concept",
+              "label": "Social brain hypothesis",
+              "description": "Hypothesis proposing that the cognitive demands of complex social environments contributed to the evolution of larger primate brains, particularly expanded neocortex.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p1-5:n3",
+              "type": "Social Trait",
+              "label": "Social complexity",
+              "description": "Complexity of social relationships and social structure within groups or communities, proposed as a focus for quantitative comparison across species and group sizes.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p1-5:n4",
+              "type": "Social Measure",
+              "label": "Group size",
+              "description": "Number of individuals in a primate social group or chimpanzee community, used as a coarse proxy for social complexity.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p1-5:n5",
+              "type": "Trait",
+              "label": "Brain size",
+              "description": "Relative brain size discussed in relation to primate group size and social cognition.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p1-5:n6",
+              "type": "Cognitive Trait",
+              "label": "Neocortex size",
+              "description": "Relative neocortex size or neocortex-to-brain ratio discussed as an indicator of cognitive capacity and its association with group size.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p1-5:n7",
+              "type": "Community",
+              "label": "Chimpanzee community",
+              "description": "Stable broader social unit of chimpanzees within which individuals associate in temporary parties.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p1-5:n8",
+              "type": "Vocalization",
+              "label": "Vocalisations",
+              "description": "Vocal communication interactions considered as a possible component of social relationship maintenance and social network measurement.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p1-5:n9",
+              "type": "Gesture",
+              "label": "Gestures",
+              "description": "Gestural communication interactions considered as a possible component of social relationship maintenance and social network measurement.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p1-5:n10",
+              "type": "Social Structure",
+              "label": "Stable cohesive social groups",
+              "description": "Social structure characterized by stable group membership and high spatial and temporal cohesion, contrasted with chimpanzee fission-fusion organisation.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p6-10:n1",
+              "type": "Social Process",
+              "label": "Social differentiation",
+              "description": "Flexible adjustment in the number of strong and weak social bonds maintained by primates, described as reducing the cognitive demands of managing social relationships.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p6-10:n2",
+              "type": "Social Relationship",
+              "label": "Strong social bonds",
+              "description": "Close social bonds that chimpanzees maintain in relatively small numbers, particularly in large groups.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p6-10:n3",
+              "type": "Social Relationship",
+              "label": "Weak social bonds",
+              "description": "Less strong social ties that chimpanzees maintain in larger numbers, especially in large groups.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p6-10:n4",
+              "type": "Cognitive Process",
+              "label": "Social relationship tracking",
+              "description": "Retention and manipulation of information about social relationships, including indirect or third-party relationships.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p6-10:n5",
+              "type": "Cognitive Concept",
+              "label": "Social knowledge",
+              "description": "Information that primates retain and update about conspecifics and the outcomes of social interactions.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p6-10:n6",
+              "type": "Cognitive Process",
+              "label": "Social information updating",
+              "description": "Integration of information to update knowledge about conspecifics and predict outcomes of social interactions.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p6-10:n7",
+              "type": "Population Measure",
+              "label": "Group size",
+              "description": "The number of individuals in a chimpanzee social group or community, considered in comparisons of small, medium, and large groups.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p6-10:n8",
+              "type": "Behavior",
+              "label": "Grooming",
+              "description": "A behavioral interaction proposed for use in network analyses of chimpanzee social relationships.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p6-10:n9",
+              "type": "Communication Behavior",
+              "label": "Gestural communication",
+              "description": "Communication through gestures, identified as a behavioral interaction for examining chimpanzee social relationships.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p6-10:n10",
+              "type": "Communication Behavior",
+              "label": "Vocal communication",
+              "description": "Communication through vocalizations, identified as a behavioral interaction for examining chimpanzee social relationships.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p6-10:n11",
+              "type": "Behavioral Measure",
+              "label": "Glucocorticoid levels",
+              "description": "Hormone levels proposed as an objective biological measure of physiological well-being and social stress in chimpanzees.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p6-10:n12",
+              "type": "Ecological Condition",
+              "label": "Social stress",
+              "description": "Stress associated with sociality, competition, and the demands of managing social relationships in groups.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p6-10:n13",
+              "type": "Cognitive Ability",
+              "label": "Cognitive flexibility",
+              "description": "The ability to flexibly adjust behavior according to the current social situation.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p11-15:n1",
+              "type": "Concept",
+              "label": "Social complexity",
+              "description": "A social system in which individuals interact with many unrelated individuals across multiple social contexts.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p11-15:n2",
+              "type": "Concept",
+              "label": "Cultural complexity",
+              "description": "A system containing a larger number of distinct behavioral forms specific to a social group.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p11-15:n3",
+              "type": "Communication Trait",
+              "label": "Communication dialects",
+              "description": "Culturally acquired differences in the form of the same communication signal type.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p11-15:n5",
+              "type": "Communication Trait",
+              "label": "Vocal repertoire size",
+              "description": "The size of an animal's vocal communication repertoire.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p11-15:n6",
+              "type": "Social Behavior",
+              "label": "Social behavior",
+              "description": "Behavioral organization and interaction among social individuals, including the regulation of social relationships.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p11-15:n7",
+              "type": "Social Network",
+              "label": "Weighted directed social network",
+              "description": "A social network in which ties have numerical weights reflecting interaction rate or frequency and may differ in direction between individuals.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p11-15:n8",
+              "type": "Social Network Property",
+              "label": "Weighted ties",
+              "description": "Network ties assigned numerical values based on the rate or frequency of behavioral interaction.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p11-15:n9",
+              "type": "Social Network Property",
+              "label": "Directed ties",
+              "description": "Network ties whose value may differ by direction between two individuals when interactions are asymmetric.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p16-17:n1",
+              "type": "Cultural Trait",
+              "label": "Grooming hand-clasp",
+              "description": "A local custom of wild chimpanzees involving a hand-clasp during grooming, referenced for the Mahale Mountains, Tanzania.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p16-17:n2",
+              "type": "Vocalization",
+              "label": "Grooming-associated sounds",
+              "description": "Sounds produced by chimpanzees in association with grooming, referenced in work on the Ngogo chimpanzee community.",
+              "operation": "node.create"
+            },
+            {
+              "id": "new:paper2.pdf-p16-17:n3",
+              "type": "Vocalization",
+              "label": "Copulation calls",
+              "description": "Vocalizations used by female chimpanzees during copulation and discussed in relation to social competition.",
+              "operation": "node.create"
+            }
+          ],
+          "edges": [
+            {
+              "id": "35614a18-f5f3-4137-93d2-31c9e2bb54dd",
+              "source": "d9bccc45-cb99-42fe-95c4-674a4fa5b3da",
+              "target": "84643b61-9611-4da3-beaf-abb61d358d48",
+              "type": "performed_by",
+              "operation": "edge.fetch"
+            },
+            {
+              "id": "bc315178-5986-40bc-b145-2f59637a08e5",
+              "source": "3e63d616-6774-4a67-b709-c0cab77833e1",
+              "target": "7a7e0c2b-aa88-4c4e-81a7-e777edca589d",
+              "type": "characterized_by",
+              "operation": "edge.fetch"
+            },
+            {
+              "id": "65734cf8-3057-425b-8ea2-e6b460aa3fc2",
+              "source": "7a7e0c2b-aa88-4c4e-81a7-e777edca589d",
+              "target": "869396e7-5d0c-4918-a5ad-dc98a053217b",
+              "type": "part_of",
+              "operation": "edge.fetch"
+            },
+            {
+              "id": "734be57b-a215-4728-9b68-c791c4d0acf7",
+              "source": "b8c370c3-d4b2-4a2d-98bc-d30612f3dd33",
+              "target": "2fcba4ff-d752-4078-b2f2-762dcd4bef1a",
+              "type": "analyzes",
+              "operation": "edge.fetch"
+            },
+            {
+              "id": "e5",
+              "source": "3e63d616-6774-4a67-b709-c0cab77833e1",
+              "target": "84643b61-9611-4da3-beaf-abb61d358d48",
+              "type": "characteristic_of",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e6",
+              "source": "3e63d616-6774-4a67-b709-c0cab77833e1",
+              "target": "7a7e0c2b-aa88-4c4e-81a7-e777edca589d",
+              "type": "includes",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e7",
+              "source": "new:paper2.pdf-p1-5:n7",
+              "target": "new:paper2.pdf-p1-5:n4",
+              "type": "has_property",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e8",
+              "source": "7a7e0c2b-aa88-4c4e-81a7-e777edca589d",
+              "target": "new:paper2.pdf-p1-5:n7",
+              "type": "part_of",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e9",
+              "source": "d9bccc45-cb99-42fe-95c4-674a4fa5b3da",
+              "target": "41316585-110b-437f-8f8f-d1a34964249c",
+              "type": "contributes_to",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e10",
+              "source": "new:paper2.pdf-p1-5:n2",
+              "target": "new:paper2.pdf-p1-5:n5",
+              "type": "explains",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e11",
+              "source": "new:paper2.pdf-p1-5:n6",
+              "target": "new:paper2.pdf-p1-5:n4",
+              "type": "associated_with",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e12",
+              "source": "new:paper2.pdf-p1-5:n5",
+              "target": "new:paper2.pdf-p1-5:n4",
+              "type": "associated_with",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e13",
+              "source": "new:paper2.pdf-p1-5:n4",
+              "target": "new:paper2.pdf-p1-5:n3",
+              "type": "represents",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e14",
+              "source": "b8c370c3-d4b2-4a2d-98bc-d30612f3dd33",
+              "target": "new:paper2.pdf-p1-5:n3",
+              "type": "used_for",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e15",
+              "source": "b8c370c3-d4b2-4a2d-98bc-d30612f3dd33",
+              "target": "41316585-110b-437f-8f8f-d1a34964249c",
+              "type": "analyzes",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e16",
+              "source": "new:paper2.pdf-p1-5:n3",
+              "target": "d9bccc45-cb99-42fe-95c4-674a4fa5b3da",
+              "type": "may_include",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e17",
+              "source": "new:paper2.pdf-p1-5:n3",
+              "target": "new:paper2.pdf-p1-5:n8",
+              "type": "may_include",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e18",
+              "source": "new:paper2.pdf-p1-5:n3",
+              "target": "new:paper2.pdf-p1-5:n9",
+              "type": "may_include",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e19",
+              "source": "new:paper2.pdf-p1-5:n10",
+              "target": "new:paper2.pdf-p1-5:n1",
+              "type": "characteristic_of",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e20",
+              "source": "3e63d616-6774-4a67-b709-c0cab77833e1",
+              "target": "869396e7-5d0c-4918-a5ad-dc98a053217b",
+              "type": "involves",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e21",
+              "source": "b8c370c3-d4b2-4a2d-98bc-d30612f3dd33",
+              "target": "3e63d616-6774-4a67-b709-c0cab77833e1",
+              "type": "used_in",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e22",
+              "source": "b8c370c3-d4b2-4a2d-98bc-d30612f3dd33",
+              "target": "new:paper2.pdf-p6-10:n4",
+              "type": "analyzes",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e23",
+              "source": "new:paper2.pdf-p6-10:n1",
+              "target": "new:paper2.pdf-p6-10:n2",
+              "type": "involves",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e24",
+              "source": "new:paper2.pdf-p6-10:n1",
+              "target": "new:paper2.pdf-p6-10:n3",
+              "type": "involves",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e25",
+              "source": "new:paper2.pdf-p6-10:n2",
+              "target": "84643b61-9611-4da3-beaf-abb61d358d48",
+              "type": "characteristic_of",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e26",
+              "source": "new:paper2.pdf-p6-10:n3",
+              "target": "84643b61-9611-4da3-beaf-abb61d358d48",
+              "type": "characteristic_of",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e27",
+              "source": "new:paper2.pdf-p6-10:n4",
+              "target": "new:paper2.pdf-p6-10:n5",
+              "type": "informs",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e28",
+              "source": "c4604090-1d7a-418d-8dfb-8af1e6fc08cf",
+              "target": "new:paper2.pdf-p6-10:n6",
+              "type": "facilitates",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e29",
+              "source": "c4604090-1d7a-418d-8dfb-8af1e6fc08cf",
+              "target": "new:paper2.pdf-p6-10:n5",
+              "type": "increases",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e30",
+              "source": "new:paper2.pdf-p6-10:n7",
+              "target": "new:paper2.pdf-p6-10:n1",
+              "type": "influences",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e31",
+              "source": "new:paper2.pdf-p6-10:n7",
+              "target": "new:paper2.pdf-p6-10:n4",
+              "type": "increases_need_for",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e32",
+              "source": "new:paper2.pdf-p6-10:n8",
+              "target": "new:paper2.pdf-p6-10:n4",
+              "type": "used_for",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e33",
+              "source": "new:paper2.pdf-p6-10:n9",
+              "target": "new:paper2.pdf-p6-10:n4",
+              "type": "used_for",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e34",
+              "source": "new:paper2.pdf-p6-10:n10",
+              "target": "new:paper2.pdf-p6-10:n4",
+              "type": "used_for",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e35",
+              "source": "new:paper2.pdf-p6-10:n7",
+              "target": "new:paper2.pdf-p6-10:n12",
+              "type": "can_increase",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e36",
+              "source": "new:paper2.pdf-p6-10:n12",
+              "target": "new:paper2.pdf-p6-10:n11",
+              "type": "can_increase",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e37",
+              "source": "new:paper2.pdf-p6-10:n1",
+              "target": "new:paper2.pdf-p6-10:n12",
+              "type": "can_reduce",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e38",
+              "source": "new:paper2.pdf-p6-10:n13",
+              "target": "new:paper2.pdf-p6-10:n4",
+              "type": "involved_in",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e39",
+              "source": "c30f96d1-dedb-46f9-becf-738a8ffd4899",
+              "target": "3e8703fd-7297-4f7f-a49e-013ae7251282",
+              "type": "contributes_to",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e40",
+              "source": "3e8703fd-7297-4f7f-a49e-013ae7251282",
+              "target": "2fcba4ff-d752-4078-b2f2-762dcd4bef1a",
+              "type": "can_support",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e41",
+              "source": "new:paper2.pdf-p11-15:n1",
+              "target": "new:paper2.pdf-p11-15:n2",
+              "type": "can_involve",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e42",
+              "source": "new:paper2.pdf-p11-15:n2",
+              "target": "new:paper2.pdf-p11-15:n1",
+              "type": "contributes_to",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e43",
+              "source": "3e8703fd-7297-4f7f-a49e-013ae7251282",
+              "target": "new:paper2.pdf-p11-15:n3",
+              "type": "can_produce",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e44",
+              "source": "89d934c5-869b-44d4-b8b1-0e0ff2d83be2",
+              "target": "new:paper2.pdf-p11-15:n6",
+              "type": "can_influence",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e45",
+              "source": "edc436b2-b5c4-49d6-9ab3-30d62553b226",
+              "target": "new:paper2.pdf-p11-15:n6",
+              "type": "can_influence",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e46",
+              "source": "new:paper2.pdf-p11-15:n5",
+              "target": "new:paper2.pdf-p1-5:n4",
+              "type": "associated_with",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e47",
+              "source": "b8c370c3-d4b2-4a2d-98bc-d30612f3dd33",
+              "target": "89d934c5-869b-44d4-b8b1-0e0ff2d83be2",
+              "type": "analyzes",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e48",
+              "source": "b8c370c3-d4b2-4a2d-98bc-d30612f3dd33",
+              "target": "edc436b2-b5c4-49d6-9ab3-30d62553b226",
+              "type": "analyzes",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e49",
+              "source": "b8c370c3-d4b2-4a2d-98bc-d30612f3dd33",
+              "target": "new:paper2.pdf-p11-15:n7",
+              "type": "analyzes",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e50",
+              "source": "new:paper2.pdf-p11-15:n7",
+              "target": "new:paper2.pdf-p11-15:n8",
+              "type": "has_property",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e51",
+              "source": "new:paper2.pdf-p11-15:n7",
+              "target": "new:paper2.pdf-p11-15:n9",
+              "type": "has_property",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e52",
+              "source": "dc1d1f7e-ed8b-417f-8dd7-437fe4170e0a",
+              "target": "84643b61-9611-4da3-beaf-abb61d358d48",
+              "type": "characteristic_of",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e53",
+              "source": "new:paper2.pdf-p1-5:n4",
+              "target": "new:paper2.pdf-p11-15:n7",
+              "type": "influences",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e54",
+              "source": "new:paper2.pdf-p16-17:n1",
+              "target": "d9bccc45-cb99-42fe-95c4-674a4fa5b3da",
+              "type": "subtype_of",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e55",
+              "source": "new:paper2.pdf-p16-17:n1",
+              "target": "bbaeb441-6bcb-4b6d-b4d0-ed677ed39e2c",
+              "type": "observed_in",
+              "operation": "edge.create"
+            },
+            {
+              "id": "e56",
+              "source": "new:paper2.pdf-p16-17:n2",
+              "target": "ba6d1f73-d013-4c62-8cfd-e0b4340d3411",
+              "type": "observed_in",
+              "operation": "edge.create"
+            }
+          ]
+        }
+      }
+    ]
+  }
+]
